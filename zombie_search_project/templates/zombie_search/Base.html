@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang = "en">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="base_style.css">
+</head>
+
+<title> Zombies- {% block title %} welcome {% endblock %} </title>
+
+<body bgcolor="#A52A2A">
+
+<div id="nav_bar">
+<ul>
+	{% if user.isauthenticated %}
+		<li><a href="zombie_search/Profile.html">Your Profile</a></li>
+	{% else %}
+		<li><a href="zombie_search/login.html">Login</a></li>
+		<li><a href="zombie_search/Register.html">Register</a></li>
+	{% endif %}
+	<li><a href="zombie_search/About.html">Instructions</a></li>
+	<li><a href ="zombie_search/Play.html">Play!</a></li>
+	<!--search bar to be added-->
+</ul>
+</div>
+
+<div id="body">
+	{% block body %}
+	{% endblock %}
+</div>
+
+</link>
+</body>
+</html>
