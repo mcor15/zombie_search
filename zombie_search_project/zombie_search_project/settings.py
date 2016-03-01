@@ -10,6 +10,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
+PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -23,6 +26,9 @@ SECRET_KEY = '&a9_9x&(s=wx@u6h=gl=d0c0i6t6r_%39$$ao_bpfe)cq_11=u'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
+TEMPLATE_DIRS = (TEMPLATE_PATH,)
 
 ALLOWED_HOSTS = []
 
@@ -82,3 +88,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_PATH = os.path.join(PROJECT_PATH,'static')
+
+STATICFILES_DIRS = (
+    STATIC_PATH,
+)

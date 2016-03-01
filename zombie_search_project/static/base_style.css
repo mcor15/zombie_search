@@ -71,8 +71,9 @@
 
 #leaderboard{
 	border-radius: 25px;
-	height: 500px;
-	width: 500px;
+	position: absolute;
+	background-color: white;
+	margin: 5px;
 	border: 1px solid black;
 }
 
