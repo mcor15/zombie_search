@@ -1,37 +1,50 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang = "en">
 
 {% load static %}
 
+<html xmlns="http://www.w3.org/1999/xhtml" lang = "en">
+
 <head>
-	<link rel="stylesheet" href="{% static 'base_style.css' %}">
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<link href="{% static 'css/zombie-style.css' %}" rel="stylesheet" />
+	
+	<!-- Bootstrap -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
+	<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet" />
+
+	<title>Zombie Search - {% block title %}Zombie Search{% endblock %}</title>
 </head>
 
-<title> Zombies- {% block title %} welcome {% endblock %} </title>
+<body>
+<nav class = "navbar navbar-fixed-top">
+		<ul class="nav nav-pills">
 
-<body bgcolor="#A52A2A">
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>			
+	
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
+				
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Sign Up</button></a></li>
+		</ul>
+</nav>
 
-<div id="nav_bar">
-<ul>
-	{% if user.isauthenticated %}
-		<li><a href="zombie_search/Profile.html">Your Profile</a></li>
-	{% else %}
-		<li><a href="zombie_search/login.html">Login</a></li>
-		<li><a href="zombie_search/Register.html">Register</a></li>
-	{% endif %}
-	<li><a href="zombie_search/About.html">Instructions</a></li>
-	<li><a href ="zombie_search/Play.html">Play!</a></li>
-	<!--search bar to be added-->
-</ul>
-</div>
+<div 
+	id="body"
+	border= "solid black">
 
-<div id="body">
 	{% block body %}
 	{% endblock %}
 </div>
 
-</link>
+<nav class ="navbar navbar-fixed-bottom center">
+	<ul class="nav nav-pills" align = "center">
+		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
+		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+	</ul>
+</nav>
+
 </body>
 </html>
