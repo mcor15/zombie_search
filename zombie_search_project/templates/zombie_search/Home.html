@@ -3,40 +3,29 @@
 
 {% extends 'zombie_search/Base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %}Home{% endblock %}
 
+{% block header %}Leaderboard{% endblock %}
 {% block body %}
 	<h1>Leaderboard</h1>
-	<div id = "leaderboard">
-		<div>
-			<ul>
-				{% for users in totalKills %}
-					<li><!-- link to user -->{% user %}</li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div>
-			<ul>
-				{% for users in gameKills %}
-					<li><!-- link to user -->{% user %}</li>
-				{% endfor %}
-			</ul>
-		</div>
-	</div>
-	<div id="leaderboard">
-		<div>
-			<ul>
-				{% for users in totalDays %}
-					<li><!-- link to user -->{% user %}</li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div>
-			<ul>
-				{% for users in averageDays %}
-					<li><!-- link to user -->{% user %}</li>
-				{% endfor %}
-			</ul>
-		</div>
-	</div>
+		<ol>
+			{% for users in totalKills %}
+				<li><!-- link to user -->{% user %}</li>
+			{% endfor %}
+		</ol>
+		<ol>
+			{% for users in gameKills %}
+				<li><!-- link to user -->{% user %}</li>
+			{% endfor %}
+		</ol>
+		<ol>
+			{% for users in totalDays %}
+				<li><!-- link to user -->{% user %}</li>
+			{% endfor %}
+		</ol>
+		<ol>
+			{% for users in averageDays %}
+				<li><!-- link to user -->{% user %}</li>
+			{% endfor %}
+		</ol>
 {% endblock %}
