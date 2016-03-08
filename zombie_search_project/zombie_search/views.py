@@ -16,7 +16,7 @@ def home(request):
 	return render(request,'zombie_search/Base.html')
 	
 def about(request):
-	return HttpResponse("Instructions")
+	return render(request, 'zombie_search/About.html')
 	
 def profile(request):
 	return HttpResponse("user profile")

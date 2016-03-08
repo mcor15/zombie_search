@@ -14,11 +14,12 @@ body {
 	
 #pills {
 	width: 100%;
+	text-align: center;
 }
 
 #pills li {
-	display: inline;
-	float: center;
+	display: inline-block;
+	float: none;
 	}
 
 /**
@@ -35,6 +36,8 @@ body {
 	right: 20px;
 	bottom: 50px;
 	top: 55px;
+	text-align: center;
+	font-size: 150%;
 	}
 	
 #main h1{
@@ -42,6 +45,7 @@ body {
 	border: 1px solid black;
 	text-align: center;
 	padding: 0px;
+	margin: 0px;
 	}
 
 #leaderboard{

@@ -7,7 +7,12 @@
 
 {% block header %}Leaderboard{% endblock %}
 {% block body %}
-	<h1>Leaderboard</h1>
+	<table class = "table table-striped">
+		<tr>
+		<th>Username</th>
+		<th>Kills</th>
+		</tr>
+				
 		<ol>
 			{% for users in totalKills %}
 				<li><!-- link to user -->{% user %}</li>
