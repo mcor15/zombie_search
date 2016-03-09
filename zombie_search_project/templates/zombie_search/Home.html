@@ -7,30 +7,18 @@
 
 {% block header %}Leaderboard{% endblock %}
 {% block body %}
-	<table class = "table table-striped">
+	<table class = "table table-striped" style="width:90%; position:relative; top: 10px;">
 		<tr>
 		<th>Username</th>
-		<th>Kills</th>
+		<th>Score</th>
 		</tr>
-				
-		<ol>
-			{% for users in totalKills %}
-				<li><!-- link to user -->{% user %}</li>
-			{% endfor %}
-		</ol>
-		<ol>
-			{% for users in gameKills %}
-				<li><!-- link to user -->{% user %}</li>
-			{% endfor %}
-		</ol>
-		<ol>
-			{% for users in totalDays %}
-				<li><!-- link to user -->{% user %}</li>
-			{% endfor %}
-		</ol>
-		<ol>
-			{% for users in averageDays %}
-				<li><!-- link to user -->{% user %}</li>
-			{% endfor %}
-		</ol>
+		{% for user in top_ten %}
+			<tr>
+			<td><a href= "">{{ user.name }}</a></td>
+			<td>{{ user.total_kills }}</td>			
+			</tr>
+		{% endfor %}
+	</table>
+	<a href="/zombie_search/{{ left }}" style = "text-align: left; font-size: 60%">{{ left }}</a>
+	<a href="/zombie_search/{{ right }}" style="width: 50%; text-align: right; font-size: 60%">{{ right }}</a>
 {% endblock %}

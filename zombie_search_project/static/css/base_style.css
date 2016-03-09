@@ -11,6 +11,10 @@ body {
 	display:table;
 	margin: 0 auto;
 	}
+
+.table td{
+	font-size: 75%
+}
 	
 #pills {
 	width: 100%;
@@ -48,13 +52,6 @@ body {
 	margin: 0px;
 	}
 
-#leaderboard{
-	border-radius: 25px;
-	position: absolute;
-	background-color: white;
-	margin: 5px;
-	border: 1px solid black;
-}
 
 
 

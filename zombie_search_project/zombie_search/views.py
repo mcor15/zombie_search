@@ -1,31 +1,44 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from zombie_search.models import Player
 
-def home(request):
-#    totalKills_list = user.objects.order_by('totalKills')[:10]
-#    gameKills_list = user.objects.order_by('maxKills')[:10]
-#    totalDays_list = user.objects.order_by('totalDays')[:10]	
-#    averageDays_list = user.objects.order_by('averageDays')[:10]
+def get_leaderboard(OrderBy, left, right):
+    top_ten = Player.objects.order_by(OrderBy)[:10]
 	
-#    context_dict = {'totalKills': totalKills_list, 
-#					'gameKills': gameKills_list,
-#					'totalDays': totalDays_list,
-#					'averageDays': averageDays_list,}
-#	
-#   return render(request, 'zombie_search/Home.html', context_dict)
-	return render(request,'zombie_search/Base.html')
+    context_dict = {'top_ten': top_ten,
+					'left': left,
+					'right': right,
+					}
+	
+    return context_dict
+	
+def total_kills(request):
+    context_dict = get_leaderboard('total_kills',"", "most_kills")
+    return render(request, 'zombie_search/Home.html', context_dict)
+
+def most_kills(request):
+    context_dict = get_leaderboard('most_kills',"total_kills", "total_days")
+    return render(request, 'zombie_search/Home.html', context_dict)
+	
+def total_days(request):
+    context_dict = get_leaderboard('total_days',"most_kills", "avg_days")
+    return render(request, 'zombie_search/Home.html', context_dict)
+	
+#def avg_kills(request):
+#    context_dict = get_leaderboard('avg_days',"total_days", "")
+#    return render(request, 'zombie_search/Home.html', context_dict)
 	
 def about(request):
-	return render(request, 'zombie_search/About.html')
+    return render(request, 'zombie_search/About.html')
 	
 def profile(request):
-	return HttpResponse("user profile")
+    return HttpResponse("user profile")
 
 def editAccount(request):
-	return HttpResponse("manage profile")
+    return HttpResponse("manage profile")
 	
 def login(request):
-	return HttpResponse("Login")
+    return render(request, 'zombie_search/Login.html')
 
 def register(request):
-	return HttpResponse("Register")
+    return render(request, 'zombie_search/Register.html')

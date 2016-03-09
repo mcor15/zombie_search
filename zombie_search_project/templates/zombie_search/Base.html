@@ -22,14 +22,13 @@
 <nav class = "navbar navbar-fixed-top">
 
 	<ul class="nav nav-pills">
-
-		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>			
-	
-		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
-				
-		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>
-		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Sign Up</button></a></li>
-			
+		{% if user.isauthenticated %}
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>			
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
+		{% else %}
+			<li role="presentation"><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>
+			<li role="presentation"><a href="/zombie_search/register"><button type="button" class="btn btn-default navbar-btn">Sign Up</button></a></li>
+		{% endif %}
 	</ul>
 		
 	<ul class="nav nav-pills pull-right" style="position: relative; top: 10px;">
@@ -56,8 +55,12 @@
 	<div class="table">
 	<ul class="nav nav-pills" id="pills">
 		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
-		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
-		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+		<li role="presentation"><a href="/zombie_search/about"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+		{% if user.isauthenticated %}
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+		{% else %}
+			<li role="presentation"><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+		{% endif %}
 	</ul>
 	</div>
 </nav>
