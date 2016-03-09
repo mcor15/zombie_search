@@ -7,7 +7,9 @@ class Player(models.Model):
     name = models.CharField(max_length=20, unique=True)
     password = models.CharField(max_length=10)
     email = models.CharField(max_length=20)
+	
     profile_picture = models.ImageField(blank=True)
+	
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
 	#How do we calculate this within the database?

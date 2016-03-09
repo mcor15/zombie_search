@@ -34,7 +34,6 @@ body {
 #main{
 	background-color: #f2f2f2;
 	font-family: "arial";
-	border: 1px solid black;
 	position: absolute;
 	left: 20px;
 	right: 20px;
@@ -42,11 +41,13 @@ body {
 	top: 55px;
 	text-align: center;
 	font-size: 150%;
+	border-radius: 25px;
 	}
 	
 #main h1{
 	background-color: white;
-	border: 1px solid black;
+
+	border-radius: 25px 25px 0px 0px;
 	text-align: center;
 	padding: 0px;
 	margin: 0px;
