@@ -94,3 +94,10 @@ STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+
+
+#Hashers for password
+PASSWORD_HASHERS = (
+'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)

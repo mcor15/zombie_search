@@ -1,15 +1,14 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
-# Create your models here.
+# Create your models here. \(^0^)/
 
 class Player(models.Model):
-    name = models.CharField(max_length=20, unique=True)
-    password = models.CharField(max_length=10)
-    email = models.CharField(max_length=20)
+    #One to one mapping of Player model to default User model
+    user = models.OneToOneField(User)
 	
-    profile_picture = models.ImageField(blank=True)
-	
+    profile_picture = models.ImageField(upload_to='player_avatars', blank=True)
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
 	#How do we calculate this within the database?
@@ -21,7 +20,7 @@ class Player(models.Model):
 	
 
     def __unicode__(self):
-        return self.name
+        return self.user.username
 
 
 class Badge(models.Model):
