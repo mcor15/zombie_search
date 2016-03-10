@@ -1,13 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from zombie_search.models import Player
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
+def decode_url(str):
+    str = str.replace('_', ' ')
+    return str.title()
+	
 def get_leaderboard(OrderBy, left, right):
     top_ten = Player.objects.order_by(OrderBy)[:10]
 	
     context_dict = {'top_ten': top_ten,
-					'left': left,
-					'right': right,
+					'lefturl': left,
+					'leftname': decode_url(left),
+					'righturl': right,
+					'rightname': decode_url(right),
+					'this':decode_url(OrderBy),
 					}
 	
     return context_dict
@@ -24,15 +34,30 @@ def total_days(request):
     context_dict = get_leaderboard('total_days',"most_kills", "avg_days")
     return render(request, 'zombie_search/Home.html', context_dict)
 	
-#def avg_kills(request):
+#def avg_days(request):
+#    context = RequestContext(request)
 #    context_dict = get_leaderboard('avg_days',"total_days", "")
-#    return render(request, 'zombie_search/Home.html', context_dict)
+#    return render(request, 'zombie_search/Home.html', context_dict, context)
 	
 def about(request):
     return render(request, 'zombie_search/About.html')
 	
-def profile(request):
-    return HttpResponse("user profile")
+@login_required
+def profile(request, user_slug):
+    context = RequestContext(request)
+	
+
+    context_dict = {}
+	
+    u = User.objects.get(username= user_slug)
+
+    try:
+        player = Player.objects.get(user=u)
+    except:
+        player = None
+
+    context_dict['player'] = player
+    return render_to_response('zombie_search/Profile.html', context_dict, context)
 
 def editAccount(request):
     return HttpResponse("manage profile")

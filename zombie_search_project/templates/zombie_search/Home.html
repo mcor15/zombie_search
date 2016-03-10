@@ -5,7 +5,7 @@
 
 {% block title %}Home{% endblock %}
 
-{% block header %}Leaderboard{% endblock %}
+{% block header %}Leaderboard-{{this}}{% endblock %}
 {% block body %}
 	<table class = "table table-striped" style="width:90%; position:relative; top: 10px;">
 		<tr>
@@ -14,11 +14,11 @@
 		</tr>
 		{% for user in top_ten %}
 			<tr>
-			<td><a href= "">{{ user.name }}</a></td>
+			<td><a href= "">{{ user.user.username }}</a></td>
 			<td>{{ user.total_kills }}</td>			
 			</tr>
 		{% endfor %}
 	</table>
-	<a href="/zombie_search/{{ left }}" style = "text-align: left; font-size: 60%">{{ left }}</a>
-	<a href="/zombie_search/{{ right }}" style="width: 50%; text-align: right; font-size: 60%">{{ right }}</a>
+	<a href="/zombie_search/{{ lefturl }}" style = "text-align: left; font-size: 60%">{{ leftname }}</a>
+	<a href="/zombie_search/{{ righturl }}" style="width: 50%; text-align: right; font-size: 60%">{{ rightname }}</a>
 {% endblock %}

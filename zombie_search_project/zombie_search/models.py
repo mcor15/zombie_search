@@ -18,7 +18,13 @@ class Player(models.Model):
     total_kills = models.IntegerField(default=0)
     most_people = models.IntegerField(default=0)
 	
-
+    slug = models.SlugField(unique=True)
+	
+	#create a user slug
+#    def save(safe, *args, **kwargs):
+#        self.slug = slugify(self.user.username)
+#        super(Player, self).save(*args, **kwargs)
+	
     def __unicode__(self):
         return self.user.username
 

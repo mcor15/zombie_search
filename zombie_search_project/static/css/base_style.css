@@ -46,13 +46,51 @@ body {
 	
 #main h1{
 	background-color: white;
-
 	border-radius: 25px 25px 0px 0px;
 	text-align: center;
 	padding: 0px;
 	margin: 0px;
 	}
+	
+#player_stats{
+	width: 15%;
+	height: 90%;
+	float: left;
+	margin-left: 10px;
+	display: inline;
+	font-size: 75%;
+	}
 
+#player_stats img{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 168px;
+	height: 168px;
+	}
+
+#player_stats li{
+	list-style: none;
+	text-align: left;
+	}
+
+#trophy{
+	background-color: white;
+	margin-top: 20px;
+	margin-right: 20px;
+	font-family: "arial";
+	width: 80%;
+	float: right;
+	text-align: center;
+	font-size: 150%;
+	border-radius: 25px;
+	border: solid black;
+	border-width: 1px;
+	}
+
+#trophy h1{
+	border-bottom: solid black;
+	border-width: 1px;
+	}
 
 
 

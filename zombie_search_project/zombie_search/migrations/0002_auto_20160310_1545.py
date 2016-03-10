@@ -7,14 +7,14 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('zombie_search', '0003_auto_20160308_1801'),
+        ('zombie_search', '0001_initial'),
     ]
 
     operations = [
-        migrations.AddField(
+        migrations.AlterField(
             model_name='player',
-            name='total_kills',
-            field=models.IntegerField(default=0),
+            name='slug',
+            field=models.SlugField(unique=True),
             preserve_default=True,
         ),
     ]
