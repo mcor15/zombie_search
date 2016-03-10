@@ -7,11 +7,10 @@ from django.contrib.auth.models import User
 class Player(models.Model):
     #One to one mapping of Player model to default User model
     user = models.OneToOneField(User)
-	
+		
     profile_picture = models.ImageField(upload_to='player_avatars', blank=True)
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
-	#How do we calculate this within the database?
     avg_days = models.IntegerField(default=0)
     most_days_survived = models.IntegerField(default=0)
     most_kills = models.IntegerField(default=0)
@@ -19,31 +18,24 @@ class Player(models.Model):
     most_people = models.IntegerField(default=0)
 	
     slug = models.SlugField(unique=True)
-	
-	#create a user slug
-#    def save(safe, *args, **kwargs):
-#        self.slug = slugify(self.user.username)
-#        super(Player, self).save(*args, **kwargs)
-	
+		
     def __unicode__(self):
         return self.user.username
-
-
+	
 class Badge(models.Model):
-    name = models.CharField(max_length=10)
+    type = models.CharField(max_length=10)
     description = models.CharField(max_length=20)
     criteria = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
     icon = models.ImageField()
 
     def __unicode__(self):
-        return self.name
-
-
+        return self.level
+		
 class Achievement(models.Model):
     player = models.ForeignKey(Player)
     badge = models.ForeignKey(Badge)
     date_awarded = models.DateField()
 
     def __unicode__(self):
-        return self.name
+        return self.badge.type

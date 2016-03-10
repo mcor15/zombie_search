@@ -12,10 +12,10 @@
 		<th>Username</th>
 		<th>Score</th>
 		</tr>
-		{% for user in top_ten %}
+		{% for player in top_ten %}
 			<tr>
-			<td><a href= "">{{ user.user.username }}</a></td>
-			<td>{{ user.total_kills }}</td>			
+			<td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
+			<td>{{ player.total_kills }}</td>			
 			</tr>
 		{% endfor %}
 	</table>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
-from zombie_search.models import Player
+from zombie_search.models import Player, Achievement
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -55,8 +55,16 @@ def profile(request, user_slug):
         player = Player.objects.get(user=u)
     except:
         player = None
-
+	
     context_dict['player'] = player
+	
+    achievements = Achievement.objects.filter(player = player)
+    
+	context_dict['killer'] = achievements['killer']
+	context_dict['survival'] = achievements['survival']
+	context_dict['stamina'] = achievements['stamina']
+	context_dict['party'] = achievements['party']
+	
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
 def editAccount(request):

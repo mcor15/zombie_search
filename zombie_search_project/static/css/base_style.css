@@ -91,23 +91,12 @@ body {
 	border-bottom: solid black;
 	border-width: 1px;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+#trophy img{
+	display: inline;
+	height: 160px;
+	width: 160px;
+	}
 
 
 
