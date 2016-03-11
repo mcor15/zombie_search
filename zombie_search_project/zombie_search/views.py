@@ -60,10 +60,10 @@ def profile(request, user_slug):
 	
     achievements = Achievement.objects.filter(player = player)
     
-	context_dict['killer'] = achievements['killer']
-	context_dict['survival'] = achievements['survival']
-	context_dict['stamina'] = achievements['stamina']
-	context_dict['party'] = achievements['party']
+    context_dict['killer'] = achievements['killer']
+    context_dict['survival'] = achievements['survival']
+    context_dict['stamina'] = achievements['stamina']
+    context_dict['party'] = achievements['party']
 	
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
@@ -75,3 +75,6 @@ def login(request):
 
 def register(request):
     return render(request, 'zombie_search/Register.html')
+	
+def game(request):
+    return render(request, 'zombie_search/In_Game.html')

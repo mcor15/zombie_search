@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+{% load static %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang = "en">
+
+<head>
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<!-- Bootstrap -->
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
+	<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet" />
+	<link href="{% static 'css/base_style.css' %}" rel="stylesheet" />
+	<title>Zombie Search-{% block title %}Zombie Search{% endblock %}</title>
+</head>
+
+<body>
+<div id="game">
+	<div id="game_stats">
+		<ul style="float: left; margin-top: 10px">
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Save</button></a></li>
+		</ul>
+		<ul>
+			<li><strong>Party Size:</strong></li>
+			<li><strong>Ammo:</strong></li>
+			<li><strong>Food:</strong></li>
+			<li><strong>Day:</strong></li>
+			<li><strong>Zombies Killed:</strong></li>
+			<li><strong>Time Left in Day:</strong></li>
+		</ul>
+	</div>
+	
+	{% block image %}
+	<img src = "{% static 'img/street.jpg' %}" alt="street" />
+	{% endblock %}
+	
+	<div>
+	"you are on a street. There are 5 houses on this street. What would you like to do?"
+	</div>
+	<nav class = "navbar navbar-fixed-bottom" >
+		<div class = "container fluid">
+			<ul class="nav nav-pills">
+				<li>
+					<div class="dropup" style="position: relative; top: 10px">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></button>
+						<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
+						{% for house in houses %}
+							{% if house.searched %}
+								<li style = "color=grey"><a href="#">House {{ house.number }} (searched)</a></li>
+							{% else %}
+								<li><a href="#">House {{ house.number }}</a></li>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					</div>
+				</li>
+				<li role="presentation"><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
+				<li role="presentation"><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
+				<li role="presentation"><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+			</ul>
+		</div>
+	</nav>
+
+</div>
+</body>
+</html>

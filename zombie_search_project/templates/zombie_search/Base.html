@@ -17,7 +17,6 @@
 
 <body>
 <nav class = "navbar navbar-fixed-top">
-
 	<ul class="nav nav-pills">
 		{% if user.isauthenticated %}
 			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>			
@@ -48,18 +47,16 @@
 	{% endblock %}
 </div>
 
-<nav class ="navbar navbar-fixed-bottom navbar-center">
-	<div class="table">
+<nav class ="navbar navbar-fixed-bottom">
 	<ul class="nav nav-pills" id="pills">
 		<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
 		<li role="presentation"><a href="/zombie_search/about"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 		{% if user.isauthenticated %}
-			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+			<li role="presentation"><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% else %}
-			<li role="presentation"><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+			<li role="presentation"><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% endif %}
 	</ul>
-	</div>
 </nav>
 
 </body>
