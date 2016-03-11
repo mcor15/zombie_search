@@ -1,9 +1,11 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from zombie_search.models import Player, Achievement
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from zombie_search.forms import UserForm, PlayerForm
 
 def decode_url(str):
     str = str.replace('_', ' ')
@@ -34,10 +36,10 @@ def total_days(request):
     context_dict = get_leaderboard('total_days',"most_kills", "avg_days")
     return render(request, 'zombie_search/Home.html', context_dict)
 	
-#def avg_days(request):
-#    context = RequestContext(request)
-#    context_dict = get_leaderboard('avg_days',"total_days", "")
-#    return render(request, 'zombie_search/Home.html', context_dict, context)
+def avg_days(request):
+    context = RequestContext(request)
+    context_dict = get_leaderboard('avg_days',"total_days", "")
+    return render(request, 'zombie_search/Home.html', context_dict)
 	
 def about(request):
     return render(request, 'zombie_search/About.html')
@@ -59,22 +61,75 @@ def profile(request, user_slug):
     context_dict['player'] = player
 	
     achievements = Achievement.objects.filter(player = player)
-    
-    context_dict['killer'] = achievements['killer']
+
+    context_dict['killer'] = achievements['killer']		
     context_dict['survival'] = achievements['survival']
     context_dict['stamina'] = achievements['stamina']
     context_dict['party'] = achievements['party']
-	
+		
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
+@login_required
 def editAccount(request):
     return HttpResponse("manage profile")
 	
-def login(request):
-    return render(request, 'zombie_search/Login.html')
+def player_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user:
+            login(request, user)
+            return HttpResponseRedirect('/zombie_search/')
+
+        else:
+            print "Invalid login details: {0}, {1}".format(username, password)
+            return HttpResponse("username or password were incorrect.")
+
+    else:
+        return render(request, 'zombie_search/Login.html', {})
 
 def register(request):
-    return render(request, 'zombie_search/Register.html')
-	
+    registered = False
+
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        player_form = PlayerForm(data=request.POST)
+
+        if user_form.is_valid() and player_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+
+            Player = player_form.save(commit=False)
+            Player.user = user
+
+            if 'profile_picture' in request.FILES:
+                Player.profile_picture = request.FILES['profile_picture']
+				
+            Player.save()
+
+            registered = True
+
+        else:
+            print user_form.errors, player_form.errors
+
+    else:
+        user_form = UserForm()
+        player_form = PlayerForm()
+
+    return render(request,'zombie_search/register.html', {'user_form': user_form, 'player_form': player_form, 'registered': registered})
+
+@login_required
+def splash(request):
+    return render(request, 'zombie_search/splash.html')
+@login_required	
 def game(request):
     return render(request, 'zombie_search/In_Game.html')
+	
+@login_required
+def player_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/zombie_search/')

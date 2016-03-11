@@ -9,6 +9,7 @@ class Player(models.Model):
     user = models.OneToOneField(User)
 		
     profile_picture = models.ImageField(upload_to='player_avatars', blank=True)
+	
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
     avg_days = models.IntegerField(default=0)
@@ -30,7 +31,7 @@ class Badge(models.Model):
     icon = models.ImageField()
 
     def __unicode__(self):
-        return self.level
+        return self.type
 		
 class Achievement(models.Model):
     player = models.ForeignKey(Player)

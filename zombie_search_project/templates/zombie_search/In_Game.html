@@ -36,9 +36,11 @@
 	<img src = "{% static 'img/street.jpg' %}" alt="street" />
 	{% endblock %}
 	
+	
 	<div>
-	"you are on a street. There are 5 houses on this street. What would you like to do?"
+	{% block text %}"you are on a street. There are 5 houses on this street. What would you like to do?" {% endblock %}
 	</div>
+	{% block buttons %}
 	<nav class = "navbar navbar-fixed-bottom" >
 		<div class = "container fluid">
 			<ul class="nav nav-pills">
@@ -56,13 +58,15 @@
 						</ul>
 					</div>
 				</li>
-				<li role="presentation"><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
-				<li role="presentation"><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
-				<li role="presentation"><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+				<li role="presentation"><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
+				<li role="presentation"><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
+				<li role="presentation"><a class="simple-ajax-popup-align-top" href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 			</ul>
 		</div>
 	</nav>
+	{% endblock %}
 
 </div>
 </body>
+<script href="{% static 'js/zombie_ajax.js' %}">
 </html>

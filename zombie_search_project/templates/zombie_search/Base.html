@@ -18,9 +18,9 @@
 <body>
 <nav class = "navbar navbar-fixed-top">
 	<ul class="nav nav-pills">
-		{% if user.isauthenticated %}
-			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>			
-			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
+		{% if user.is_authenticated %}
+			<li role="presentation"><a href="/zombie_search/profile/{{ user.username }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>			
+			<li role="presentation"><a href="/zombie_search/logout"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
 		{% else %}
 			<li role="presentation"><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>
 			<li role="presentation"><a href="/zombie_search/register"><button type="button" class="btn btn-default navbar-btn">Sign Up</button></a></li>
