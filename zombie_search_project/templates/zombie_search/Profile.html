@@ -35,33 +35,13 @@
 <div id="trophy">
 	<h1>Trophy Cabinet</h1>
 	
-	<div id="badge">
-		<li><strong>Killer</strong></li>
-		<li><img src="{{ killer.icon }}" alt="{{ killer.type }} trophy" /></li>
-		<li>You have killed {{ killer.requirement }} zombies!</li>
+	{% for achievement in achievements %}
+		<div id="badge">
+			<li><strong>{{ Achievement }}</strong></li>
+			<li><img src="" alt="{{ achievement.type }} trophy" /></li>
+			<li>{{ achievement.badge.description }}</li>
+		</div>
+	{% endfor %}
 		
-	</div>
-	
-	<div id="badge">
-		<li><strong>Stamina</strong></li>
-		<li><img src="{{ stamina.icon }}" alt="{{ killer.type }} trophy" /></li>
-		<li>You have played {{ stamina.requirement }} games!</li>
-		
-	</div>
-	
-	<div id="badge">
-		<li><strong>Party</strong></li>
-		<li><img src="{{ party.icon }}" alt="{{ killer.type }} trophy" /></li>
-		<li>You have had {{ party.requirement }} members in your party at once</li>
-		
-	</div>
-	
-	<div id="badge">
-		<li><strong>Survivalist</strong></li>
-		<li><img src="{{ survivalist.icon }}" alt="{{ killer.type }} trophy" /></li>
-		<li>You have survived {{ survivalist.requirement }} days!</li>
-		
-	</div>
-	
 </div>
 {% endblock %}
