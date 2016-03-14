@@ -27,10 +27,10 @@ class Player(models.Model):
 
 class Badge(models.Model):
     type = models.CharField(max_length=10)
-    description = models.CharField(max_length=20)
+    description = models.CharField(max_length=100)#Changed!!!
     criteria = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
-    icon = models.ImageField()#fix me, PLEASE!
+    icon = models.UrlField(blank=True)#fixed???
 
     def __unicode__(self):
         return self.type

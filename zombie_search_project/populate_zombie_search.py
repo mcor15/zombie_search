@@ -18,49 +18,15 @@ users = ["jill", "jim","joe","Tyreese Williams","Sasha Williams","Shane Walsh",
  "Ellis", "Nick","Rochelle","Chris Redfield", "Jill Valentine",
   "Marcus Campbell","Ed Jones","Maya Torres","Marcus Gormley"]
 
-badges = {"Za Killer not awarded":
+#Chanage this |
+#             V
+badges = {"Killer":
             ["You are the killer of zombies.",
-            [0]],
-        "Za Killer Bronze":
-            ["You are the killer of zombies.",
-            [10]],
-        "Za Killer Silver":
-            ["You are the killer of zombies.",
-            [20]],
-        "Za Killer Gold":
-            ["You are the killer of zombies.",
-            [50]],
-        "Zurvivalist not awarded":
-            ["You've come this far but death does come to us all.",
-            [0]],
-        "Zurvivalist Bronze":
-            ["You've come this far but death does come to us all.",
-            [5]],
-        "Zurvivalist Silver":
-            ["You've come this far but death does come to us all.",
-            [10]],
+            [0,]],
         "Zurvivalist Gold":
             ["You've come this far but death does come to us all.",
             [20]],
-        "Stamina not awarded":
-            ["You just can't get enough of this game.",
-            [0]],
-        "Stamina Bronze":
-            ["You just can't get enough of this game.",
-            [5]],
-        "Stamina Silver":
-            ["You just can't get enough of this game.",
-            [10]],
-        "Stamina Gold":
-            ["You just can't get enough of this game.",
-            [20]],
-        "Party! not awarded":
-            ["You just can't get enough of this game.",
-            [0]],
-        "Party! Bronze":
-            ["You just can't get enough of this game.",
-            [10]],
-        "Party! Silver":
+        "Stamina":
             ["You just can't get enough of this game.",
             [20]],
         "Party! Gold":
@@ -69,6 +35,7 @@ badges = {"Za Killer not awarded":
 
 def populate():
     print "Populating Badges..."
+    '''
     for badge in badges:
         criteria = badges[badge][1][0]
 
@@ -86,7 +53,8 @@ def populate():
             level = 0
         add_badge(badge,badges[badge][0],criteria,level,icon)
     print("Done")
-
+'''
+    add_badge("Stamina","you surrived",10,1,"\static\img" + r"\b"+ "ronze_cup.jpg")
     print "Populating Users and Achievements..."
     fives = 0
     twos = 0
@@ -117,6 +85,11 @@ def populate():
 
 
 def check_achievements(player):
+
+    b = Badge.objects.filter(type = "Stamina")
+    b = b.get(level=1)
+    add_achievement(player,b,date.today())
+    '''
     if player.games_played < 5:
         b = Badge.objects.get(type = "Stamina not awarded")
         #date(2016,06,16)
@@ -160,7 +133,7 @@ def check_achievements(player):
         #date(2016,06,16)
         add_achievement(player,b,date.today())
     if player.most_people >= 20:
-        b = Badge.objects.get(type = "Party! Silver")
+        b = Badge.objects.get(type = "Party")
         #date(2016,06,16)
         add_achievement(player,b,date.today())
     if player.most_people >= 40:
@@ -170,7 +143,7 @@ def check_achievements(player):
 
 
     if player.total_kills < 5:
-        b = Badge.objects.get(type = "Zurvivalist not awarded")
+        b = Badge.objects.get(type = "Zurvivalist not awarded", level=1)
         #date(2016,06,16)
         add_achievement(player,b,date.today())
     if player.total_kills >= 5:
@@ -185,7 +158,7 @@ def check_achievements(player):
         b = Badge.objects.get(type = "Zurvivalist Gold")
         #date(2016,06,16)
         add_achievement(player,b,date.today())
-
+'''
 
 
 
@@ -210,7 +183,7 @@ def add_player(user, games_played, total_days, avg_days,
     p.most_kills = most_kills
     p.total_kills = total_kills
     p.most_people = most_people
-    p.slug = user.username
+    p.slug = user.username #make sure this works!!
     p.save()
     return p
 
