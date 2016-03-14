@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from zombie_search.models import Player, Achievement
+from zombie_search.models import Player, Achievement, Badge
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -62,24 +62,39 @@ def about(request):
 	
 def profile(request, user_slug):
     context = RequestContext(request)
-		
-    user = User.objects.get(username= user_slug)
 
     try:
-        player = Player.objects.get(user=user)
+        player = Player.objects.get(slug=user_slug)
     except:
         player = None
 	
-	achievements = Achievement.objects.filter(player = player)
-#	killer = achievements.get(badge.name = "killer")
-	
-#   context_dict['killer'] = achievements['killer']		
-#   context_dict['survival'] = achievements['survival']
-#   context_dict['stamina'] = achievements['stamina']
-#   context_dict['party'] = achievements['party']
+    a = Achievement.objects.filter(player=player)
+
+    try:
+        killer = a.get(badge = Badge.objects.get(type = 'killer'))
+    except:
+	    killer = None
+		
+    try:
+        stamina = a.get(badge = Badge.objects.get(type = 'stamina'))
+    except:
+        stamina = None
+		
+    try:
+        party = a.get(badge = Badge.objects.get(type = 'party'))
+    except:
+	    party = None
+		
+    try:
+		survivalist = a.get(badge = Badge.objects.get(type = 'survivalist'))
+    except:
+	    survivalist = None
+		
+    achievements = [killer, party, stamina, party]
     
+		
     context_dict = {'player': player,
-					#'achievements': achievements
+					'achievements': achievements
 					}
 	
     return render_to_response('zombie_search/Profile.html', context_dict, context)
