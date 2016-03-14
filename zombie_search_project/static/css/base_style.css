@@ -3,13 +3,18 @@ body {
 	background-color: #800000;
 	}
 
+
+	
 .table {
 	display:table;
 	margin: 0 auto;
+	width:25%;
+	display: inline-block;
+	margin-top: 10px;
 	}
 
 .table td{
-	font-size: 75%
+	font-size: 75%;
 }
 	
 #pills {
@@ -33,6 +38,7 @@ body {
 	text-align: center;
 	font-size: 150%;
 	border-radius: 25px;
+	overflow: auto;
 	}
 	
 #main h1{
@@ -44,7 +50,7 @@ body {
 	}
 	
 #player_stats{
-	width: 15%;
+	width: 20%;
 	height: 90%;
 	float: left;
 	margin-left: 10px;
@@ -69,7 +75,8 @@ body {
 	margin-top: 20px;
 	margin-right: 20px;
 	font-family: "arial";
-	width: 80%;
+	width: 75%;
+	height: 80%;
 	float: right;
 	text-align: center;
 	font-size: 150%;
@@ -78,6 +85,19 @@ body {
 	border-width: 1px;
 	}
 
+#badge{
+	display: inline-block;
+	padding: 15px;
+	height: 160px;
+	width: 160px;
+	}
+	
+#badge li{
+	list-style: none;
+	margin-bottom: 10px;
+	font-size: 50%;
+	}
+	
 #trophy h1{
 	border-bottom: solid black;
 	border-width: 1px;
@@ -87,6 +107,7 @@ body {
 	display: inline;
 	height: 160px;
 	width: 160px;
+	font-size:50%;
 	}
 	
 #game{

@@ -7,7 +7,8 @@
 
 {% block header %}Leaderboard-{{this}}{% endblock %}
 {% block body %}
-	<table class = "table table-striped" style="width:90%; position:relative; top: 10px;">
+<a id="load_leaderboard" data-left="{{ lefturl }}" style="position: absolute; left:30px; bottom: 30px;">&larr;</a>
+	<table class = "table table-striped">
 		<tr>
 		<th>Username</th>
 		<th>Score</th>
@@ -15,10 +16,23 @@
 		{% for player in top_ten %}
 			<tr>
 			<td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
-			<td>{{ player.total_kills }}</td>			
+			<td>{{ player.most_kills }}</td>
 			</tr>
 		{% endfor %}
 	</table>
-	<a href="/zombie_search/{{ lefturl }}" style = "text-align: left; font-size: 60%">{{ leftname }}</a>
-	<a href="/zombie_search/{{ righturl }}" style="width: 50%; text-align: right; font-size: 60%">{{ rightname }}</a>
+	
+	<table class="table table-striped">
+		<tr>
+		<th>Username</th>
+		<th>Score</th>
+		</tr>
+		{% for player in next_ten %}
+			<tr>
+			<td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
+			<td>{{ player.most_kills }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+<a href = "/zombie_search/{{ righturl }}" style="position:absolute; right:30px; bottom: 30px;">&rarr;</a>
+	
 {% endblock %}

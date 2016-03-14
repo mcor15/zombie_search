@@ -16,6 +16,21 @@
 </head>
 
 <body>
+<div id="dialog" title="Instructions" style="display: none">
+<br />
+<strong>Welcome to Zombie Search!<br />
+
+Your journey starts when you awake to find that your neighbourhodo has been hit with a full-blown zombie apocalypes...<br /><br /></strong>
+
+You will begin in front of a house. You can then use the buttons on the bottom of the screen to enter that house or move to one of the other houses on the street. Once in a house, you can search the rooms of the house to find food, ammo or new people to join your party...but be careful: you may also find a zombie!<br /><br />
+
+If you find a zombie, you may choose to fight it or run, if you are running low on ammo, you may want to choose not to fight the zombie, but it will still be there ready to attack you of you try to re-enter that house!<br /><br />
+
+On the top of the screen you can see your supplies as well as how many days have passed and how much time is left in this day- at the end of the day you will use one unit of food for each member of your party, and if you cannot feed everyone, some members will leave!<br /><br />
+
+Plan your moves carefully, as each action takes up time within the day! The game ends when you run out of food or all members of your party are killed by zombies!<br /><br />
+</p>
+</div>
 <div id="game">
 	<div id="game_stats">
 		<ul style="float: left; margin-top: 10px">
@@ -58,9 +73,9 @@
 						</ul>
 					</div>
 				</li>
-				<li role="presentation"><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
-				<li role="presentation"><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
-				<li role="presentation"><a class="simple-ajax-popup-align-top" href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+				<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
+				<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
+				<li><a><button id ="ingame_about" type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 			</ul>
 		</div>
 	</nav>
@@ -68,5 +83,11 @@
 
 </div>
 </body>
-<script href="{% static 'js/zombie_ajax.js' %}">
+	
+	<!-- JQuery -->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+<script src="{% static 'js/zombie-jquery.js' %}"></script>
+
 </html>

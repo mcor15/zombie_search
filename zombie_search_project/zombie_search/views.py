@@ -12,24 +12,40 @@ def decode_url(str):
     return str.title()
 	
 def get_leaderboard(OrderBy, left, right):
-    top_ten = Player.objects.order_by(OrderBy)[:10]
-	
+    top_ten = Player.objects.order_by(OrderBy).reverse()[:10]
+    next_ten = Player.objects.order_by(OrderBy).reverse()[10:20]
+
     context_dict = {'top_ten': top_ten,
-					'lefturl': left,
-					'leftname': decode_url(left),
-					'righturl': right,
-					'rightname': decode_url(right),
-					'this':decode_url(OrderBy),
+					'next_ten': next_ten,
+					'lefturl':left,
+					'righturl':right,
+					'this': decode_url(OrderBy)
 					}
 	
     return context_dict
-	
+
+#def get_leaderboard(request):
+#    OrderBy = None
+#	if request.method == 'GET':
+#	    OrderBy = request.GET['OrderBy']
+#	
+#    top_ten = Player.objects.order_by(OrderBy).reverse()[:10]
+#    next_ten = Player.objects.order_by(OrderBy).reverse()[10:20]
+#
+#    context_dict = {'top_ten': top_ten,
+#					'next_ten': next_ten,
+#					'this': decode_url(OrderBy)
+#					}
+#	
+#    return context_dict
+
 def total_kills(request):
-    context_dict = get_leaderboard('total_kills',"", "most_kills")
+    context_dict = get_leaderboard('total_kills',"avg_days", "most_kills")
+	
     return render(request, 'zombie_search/Home.html', context_dict)
 
 def most_kills(request):
-    context_dict = get_leaderboard('most_kills',"total_kills", "total_days")
+    context_dict = get_leaderboard('most_kills',"", "total_days")
     return render(request, 'zombie_search/Home.html', context_dict)
 	
 def total_days(request):
@@ -44,29 +60,28 @@ def avg_days(request):
 def about(request):
     return render(request, 'zombie_search/About.html')
 	
-@login_required
 def profile(request, user_slug):
     context = RequestContext(request)
-	
-
-    context_dict = {}
-	
-    u = User.objects.get(username= user_slug)
+		
+    user = User.objects.get(username= user_slug)
 
     try:
-        player = Player.objects.get(user=u)
+        player = Player.objects.get(user=user)
     except:
         player = None
 	
-    context_dict['player'] = player
+	achievements = Achievement.objects.filter(player = player)
+#	killer = achievements.get(badge.name = "killer")
 	
-    achievements = Achievement.objects.filter(player = player)
-
-    context_dict['killer'] = achievements['killer']		
-    context_dict['survival'] = achievements['survival']
-    context_dict['stamina'] = achievements['stamina']
-    context_dict['party'] = achievements['party']
-		
+#   context_dict['killer'] = achievements['killer']		
+#   context_dict['survival'] = achievements['survival']
+#   context_dict['stamina'] = achievements['stamina']
+#   context_dict['party'] = achievements['party']
+    
+    context_dict = {'player': player,
+					#'achievements': achievements
+					}
+	
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
 @login_required
