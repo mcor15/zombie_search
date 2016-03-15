@@ -11,7 +11,7 @@
 	{% if u %}
 		<li><a href="/zombie_search/manage"><button type="button" class="btn btn-default navbar-btn">Edit Profile</button></a></li>
 	{% else %}
-		<li><a href="/zombie_search/profile/{{ user.username }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>
+		<li><a href="/zombie_search/profile/{{ slug }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>
 	{% endif %}
 {% endblock %}
 
