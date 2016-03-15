@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 {% extends 'zombie_search/Base.html' %}
@@ -7,7 +7,7 @@
 
 {% block header %}Leaderboard-{{this}}{% endblock %}
 {% block body %}
-<a id="load_leaderboard" style="position: absolute; left:30px; bottom: 30px;">&larr;</a>
+<a href ="/zombie_search/{{ lefturl }}" id="load_leaderboard" style="position: absolute; left:30px; bottom: 30px;">&larr;</a>
 	<table class = "table table-striped">
 		<tr>
 		<th>Username</th>
@@ -20,7 +20,7 @@
 			</tr>
 		{% endfor %}
 	</table>
-	
+
 	<table class="table table-striped">
 		<tr>
 		<th>Username</th>
@@ -34,5 +34,5 @@
 		{% endfor %}
 	</table>
 <a href = "/zombie_search/{{ righturl }}" style="position:absolute; right:30px; bottom: 30px;">&rarr;</a>
-	
+
 {% endblock %}

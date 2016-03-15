@@ -24,7 +24,7 @@
 <div class="navbar navbar-fixed-top">
 	<ul class="nav">
 		{% if user.is_authenticated %}
-			{% block profile_button %}<li><a href="/zombie_search/profile/{{ user.username }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>{% endblock %}
+			{% block profile_button %}<li><a href="/zombie_search/profile/{{ slug }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>{% endblock %}
 			<li><a href="/zombie_search/logout"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
 		{% else %}
 			<li><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>

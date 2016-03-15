@@ -7,11 +7,19 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from zombie_search.forms import UserForm, PlayerForm
 
+def get_user_slug(request):
+    username = request.user
+    player = Player.objects.get(user = username)
+    user_slug = player.slug
+
+    return user_slug
+
+
 def decode_url(str):
     str = str.replace('_', ' ')
     return str.title()
 
-def get_leaderboard(OrderBy, left, right):
+def get_leaderboard(request, OrderBy, left, right):
 
     top_ten = Player.objects.order_by(OrderBy).reverse()[:10]
     next_ten = Player.objects.order_by(OrderBy).reverse()[10:20]
@@ -21,44 +29,29 @@ def get_leaderboard(OrderBy, left, right):
 					'lefturl':left,
 					'righturl':right,
 					'this': decode_url(OrderBy),
+                    'slug': get_user_slug(request)
 					}
 
     return context_dict
 
-#def get_leaderboard(request):
-#    OrderBy = None
-#	if request.method == 'GET':
-#	    OrderBy = request.GET['OrderBy']
-#
-#    top_ten = Player.objects.order_by(OrderBy).reverse()[:10]
-#    next_ten = Player.objects.order_by(OrderBy).reverse()[10:20]
-#
-#    context_dict = {'top_ten': top_ten,
-#					'next_ten': next_ten,
-#					'this': decode_url(OrderBy)
-#					}
-#
-#    return context_dict
-
 def total_kills(request):
-    context_dict = get_leaderboard('total_kills',"avg_days", "most_kills")
+    context_dict = get_leaderboard(request, 'total_kills',"avg_days", "most_kills")
     return render(request, 'zombie_search/Home.html', context_dict)
 
 def most_kills(request):
-    context_dict = get_leaderboard('most_kills',"", "total_days")
+    context_dict = get_leaderboard(request, 'most_kills',"", "total_days")
     return render(request, 'zombie_search/Home.html', context_dict)
 
 def total_days(request):
-    context_dict = get_leaderboard('total_days',"most_kills", "avg_days")
+    context_dict = get_leaderboard(request, 'total_days',"most_kills", "avg_days")
     return render(request, 'zombie_search/Home.html', context_dict)
 
 def avg_days(request):
-    context = RequestContext(request)
-    context_dict = get_leaderboard('avg_days',"total_days", "")
+    context_dict = get_leaderboard(request, 'avg_days',"total_days", "")
     return render(request, 'zombie_search/Home.html', context_dict)
 
 def about(request):
-    return render(request, 'zombie_search/About.html')
+    return render(request, 'zombie_search/About.html', {'slug':get_user_slug(request)})
 
 def profile(request, user_slug):
     context = RequestContext(request)
@@ -99,7 +92,8 @@ def profile(request, user_slug):
 
     context_dict = {'player': player,
 					'achievements': achievements,
-					'u': u}
+					'u': u,
+                    'slug': get_user_slug(request)}
 
     print context_dict
 
