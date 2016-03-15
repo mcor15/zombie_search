@@ -1,47 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 {% extends 'zombie_search/Base.html' %}
 {% load static %}
+
 {% block title %}{{ player.user.username }}{% endblock %}
 
 {% block header %}{{ player.user.username }}{% endblock %}
+{% block profile_button %}
+	{% if u %}
+		<li><a href="/zombie_search/manage"><button type="button" class="btn btn-default navbar-btn">Edit Profile</button></a></li>
+	{% else %}
+		<li><a href="/zombie_search/profile/{{ user.username }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>
+	{% endif %}
+{% endblock %}
 
 {% block body %}
-<div id="player_stats">
-	{% if player.profile_picture %}
-		<img src="{{ player.profile_picture.url }}" alt= "{{ player.user.username }}'s profile picture" />
-	{% else %}
-		<img src="{% static 'img/default_profilepic.jpg' %}" alt="default profile pic" />
-	{% endif %}
-	
-	<ul>
-		<li><strong>Last Online:</strong></li>
-		<li style="margin-top:10px"><strong>Games Played:</strong>{{ player.games_played }}</li>
-		<li style="margin-top:10px"><strong>Largest Party Size:</strong>{{ player.most_people }}</li>
-		<li style="margin-top:10px"><strong>Days Survived:</strong></li>
-		<ul>
-			<li><strong>Best:</strong>{{ player.most_days_survived }}</li>
-			<li><strong>Average:</strong>{{ player.avg_days }}</li>
-		</ul>
-		<li style="margin-top:10px"><strong>Kills:</strong></li>
-		<ul>
-			<li><strong>Total:</strong>{{ player.total_kills }}</li>
-			<li><strong>Best:</strong>{{ player.most_kills }}</li>
-			<li><strong>Average:</strong></li>
-		</ul>
-</div>
+{% if player %}
+	<div id="player_stats">
+		{% if player.profile_picture %}
+			<img src="{{ player.profile_picture.url }}" alt= "{{ player.user.username }}'s profile picture" />
+		{% else %}
+			<img src="{% static 'img/default_profilepic.jpg' %}" alt="default profile pic" />
+		{% endif %}
 
-<div id="trophy">
-	<h1>Trophy Cabinet</h1>
-	
-	{% for achievement in achievements %}
-		<div id="badge">
-			<li><strong>{{ Achievement }}</strong></li>
-			<li><img src="" alt="{{ achievement.type }} trophy" /></li>
-			<li>{{ achievement.badge.description }}</li>
-		</div>
-	{% endfor %}
-		
-</div>
+		<ul>
+			<li><strong>Last Online:</strong>{{ player.user.last_login }}</li>
+			<li style="margin-top:10px"><strong>Games Played:</strong>{{ player.games_played }}</li>
+			<li style="margin-top:10px"><strong>Largest Party Size:</strong>{{ player.most_people }}</li>
+			<li style="margin-top:10px"><strong>Days Survived:</strong></li>
+			<ul>
+				<li><strong>Best:</strong>{{ player.most_days_survived }}</li>
+				<li><strong>Average:</strong>{{ player.avg_days }}</li>
+			</ul>
+			<li style="margin-top:10px"><strong>Kills:</strong></li>
+			<ul>
+				<li><strong>Total:</strong>{{ player.total_kills }}</li>
+				<li><strong>Best:</strong>{{ player.most_kills }}</li>
+				<li><strong>Average:</strong></li>
+			</ul>
+	</div>
+
+	<div id="trophy">
+		<h1>Trophy Cabinet</h1>
+
+		{% for achievement in achievements %}
+			<div id="badge">
+				<li><strong>{{ Achievement }}</strong></li>
+				<li><img src="" alt="{{ achievement.type }} trophy" /></li>
+				<li>{{ achievement.badge.description }}</li>
+			</div>
+		{% endfor %}
+	</div>
+{% else %}
+	<strong style="float: center; font-size=200%"><br /> <br />No user found! Please try again...</strong>
+{% endif %}
 {% endblock %}
