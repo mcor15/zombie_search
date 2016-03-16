@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'zombie_search',
+    'random_image',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -94,6 +95,10 @@ STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
+MEDIA_URL = '/media/'
+print MEDIA_URL
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+print MEDIA_ROOT
 
 #Hashers for password
 PASSWORD_HASHERS = (

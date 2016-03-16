@@ -9,6 +9,13 @@ from django.template import RequestContext
 from zombie_search.forms import UserForm, PlayerForm
 from game import Game
 
+<<<<<<< Updated upstream
+||||||| merged common ancestors
+
+
+=======
+
+>>>>>>> Stashed changes
 def get_user_slug(request):
     username = request.user
     try:

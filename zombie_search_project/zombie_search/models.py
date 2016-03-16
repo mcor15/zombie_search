@@ -9,7 +9,7 @@ class Player(models.Model):
     #One to one mapping of Player model to default User model
     user = models.OneToOneField(User)
 
-    profile_picture = models.ImageField(upload_to='/static/player_avatars', blank=True)
+    profile_picture = models.ImageField(upload_to='player_avatars', blank=True)
     player_state = PickledObjectField()
     update_state = PickledObjectField()
     street = PickledObjectField()
