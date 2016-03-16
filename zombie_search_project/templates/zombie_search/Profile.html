@@ -44,11 +44,11 @@
 	<div id="trophy">
 		<h1>Trophy Cabinet</h1>
 
-		{% for achievement in achievements %}
+		{% for badge in badges %}
 			<div id="badge">
-				<li><strong>{{ Achievement }}</strong></li>
-				<li><img src="" alt="{{ achievement.type }} trophy" /></li>
-				<li>{{ achievement.badge.description }}</li>
+				<li><strong>{{ badge }}</strong></li>
+				<li><img src="{{ badge.icon }}" alt="{{ badge }} trophy" /></li>
+				<li>{{ badge.description }}</li>
 			</div>
 		{% endfor %}
 	</div>

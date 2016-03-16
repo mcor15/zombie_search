@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from zombie_search.models import Player, Achievement, Badge
@@ -6,16 +7,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from zombie_search.forms import UserForm, PlayerForm
-
 from game import Game
-
-
 
 def get_user_slug(request):
     username = request.user
-    player = Player.objects.get(user = username)
-    user_slug = player.slug
-
+    try:
+        player = Player.objects.get(user = username)
+        user_slug = player.slug
+    except:
+        user_slug = None
     return user_slug
 
 
@@ -62,44 +62,20 @@ def profile(request, user_slug):
 
     try:
         player = Player.objects.get(slug=user_slug)
-        if player.user == request.user:
-            u = player
-        else:
-            u = None
     except:
         player = None
-        u = None
 
     a = Achievement.objects.filter(player=player)
+    player_badges = []
 
-    try:
-        killer = a.get(badge = Badge.objects.get(type = 'killer'))
-    except:
-	    killer = None
-
-    try:
-        stamina = a.get(badge = Badge.objects.get(type = 'stamina'))
-    except:
-        stamina = None
-
-    try:
-        party = a.get(badge = Badge.objects.get(type = 'party'))
-    except:
-	    party = None
-
-    try:
-		survivalist = a.get(badge = Badge.objects.get(type = 'survivalist'))
-    except:
-	    survivalist = None
-
-    achievements = [killer, party, stamina, party]
+    for achievement in a:
+        badge = achievement.badge
+        player_badges += [badge]
 
     context_dict = {'player': player,
-					'achievements': achievements,
-					'u': u,
+					'badges': player_badges,
+					'u': player == request.user,
                     'slug': get_user_slug(request)}
-
-    print context_dict
 
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
@@ -137,13 +113,13 @@ def register(request):
             user.set_password(user.password)
             user.save()
 
-            Player = player_form.save(commit=False)
-            Player.user = user
+            player = player_form.save(commit=False)
+            player.user = user
 
             if 'profile_picture' in request.FILES:
-                Player.profile_picture = request.FILES['profile_picture']
+                player.profile_picture = request.FILES['profile_picture']
 
-            Player.save()
+            player.save()
 
             registered = True
 
@@ -154,7 +130,9 @@ def register(request):
         user_form = UserForm()
         player_form = PlayerForm()
 
-    return render(request,'zombie_search/register.html', {'user_form': user_form, 'player_form': player_form, 'registered': registered})
+    context_dict = {'user_form': user_form, 'player_form': player_form, 'registered': registered}
+
+    return render(request,'zombie_search/register.html', context_dict )
 
 @login_required
 def splash(request):

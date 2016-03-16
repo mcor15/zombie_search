@@ -61,10 +61,10 @@
 	<ul class="nav nav-pills" id="pills">
 		<li><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
 		<li><a href="/zombie_search/about"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
-		{% if user.isauthenticated %}
+		{% if user.is_authenticated %}
 			<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% else %}
-			<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+			<li><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% endif %}
 	</ul>
 </div>
