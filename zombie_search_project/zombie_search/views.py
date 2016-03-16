@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from zombie_search.forms import UserForm, PlayerForm
+from zombie_search.forms import UserForm, PlayerForm, updatePlayer
 from game import Game
 
 def get_user_slug(request):
@@ -72,16 +72,22 @@ def profile(request, user_slug):
         badge = achievement.badge
         player_badges += [badge]
 
+    u = player.user == request.user
+
     context_dict = {'player': player,
 					'badges': player_badges,
-					'u': player == request.user,
-                    'slug': get_user_slug(request)}
+					'u': u,
+                    'slug': get_user_slug(request),
+                    }
 
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
-@login_required
-def manage(request):
-    return HttpResponse("manage profile")
+def update(request):
+    player_form = updatePlayer(data=request.POST, instance=request.user)
+    player = player_form.save(commit = False)
+    player.save()
+
+    return render(request, 'zombie_search/update.html', {'player_form': player_form, 'slug': get_user_slug(request)})
 
 def player_login(request):
     if request.method == 'POST':
@@ -108,7 +114,7 @@ def register(request):
         user_form = UserForm(data=request.POST)
         player_form = PlayerForm(data=request.POST)
 
-        if user_form.is_valid() and player_form.is_valid():
+        if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
             user.save()

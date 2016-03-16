@@ -1,6 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 {% extends 'zombie_search/Base.html' %}
 
 {% block title %}Register{% endblock %}
@@ -8,14 +5,28 @@
 {% block header %}Register{% endblock %}
 
 {% block body %}
+<br />
 	{% if registered %}
         <strong>thank you for registering!</strong>
-    {% else %}
-        <form id="user_form" method="post" action="/zombie_search/register/" enctype="multipart/form-data" style="font-size:50%">
-			{% csrf_token %}
-			{{ user_form.as_p }}
-			{{ profile_form.as_p }}
-			<input type="submit" name="submit" value="Register" />
-        </form>
-        {% endif %}
+				<br />
+				<a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a>
+	{% else %}
+      <form id="user_form" method="post" action="/zombie_search/register/" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				{% for field in user_form.visible_fields %}
+					<strong>{{ field.label }}</strong><br />
+					<strong><small>{{ field.errors }}</small></strong><br />
+					{{ field }}<br />
+					<small>{{ field.help_text }}</small><br />
+				{% endfor %}
+
+				{% for field in player_form.visible_fields %}
+					{{ field.label }}<br />
+					{{ field.errors }}<br />
+					{{ field }}<br />
+				{% endfor %}
+				<input class="btn btn-default navbar-btn" type="submit" name="submit" value="Submit"/>
+      </form>
+		{% endif %}
 {% endblock %}

@@ -1,22 +1,19 @@
-
 body {
 	background-color: #800000;
-	}
+}
 
-
-	
 .table {
 	display:table;
 	margin: 0 auto;
 	width:25%;
 	display: inline-block;
 	margin-top: 10px;
-	}
+}
 
 .table td{
 	font-size: 75%;
 }
-	
+
 #pills {
 	width: 100%;
 	text-align: center;
@@ -40,7 +37,7 @@ body {
 	border-radius: 25px;
 	overflow: auto;
 	}
-	
+
 #main h1{
 	background-color: white;
 	border-radius: 25px 25px 0px 0px;
@@ -48,7 +45,7 @@ body {
 	padding: 0px;
 	margin: 0px;
 	}
-	
+
 #player_stats{
 	width: 20%;
 	height: 90%;
@@ -91,25 +88,25 @@ body {
 	height: 160px;
 	width: 160px;
 	}
-	
+
 #badge li{
 	list-style: none;
 	margin-bottom: 10px;
 	font-size: 50%;
 	}
-	
+
 #trophy h1{
 	border-bottom: solid black;
 	border-width: 1px;
 	}
-		
+
 #trophy img{
 	display: inline;
 	height: 160px;
 	width: 160px;
 	font-size:50%;
 	}
-	
+
 #game{
 	background-color: #f2f2f2;
 	font-family: "arial";
@@ -144,7 +141,7 @@ body {
 	margin: 5px;
 	font-size: 85%;
 	}
-	
+
 #splash {
 	font-family: "arial";
 	position: absolute;
@@ -162,3 +159,25 @@ body {
 	height: 100%;
 	border-radius: 25px;
 	}
+
+#manage{
+	background-color: #f2f2f2;
+	font-family: "arial";
+	position: absolute;
+	left: 5px;
+	right: 5px;
+	bottom: 5px;
+	top: 5px;
+	text-align: center;
+	font-size: 150%;
+	border-radius: 25px;
+	overflow: auto;
+}
+
+#manage h1{
+	background-color: white;
+	border-radius: 25px 25px 0px 0px;
+	text-align: center;
+	padding: 0px;
+	margin: 0px;
+}
