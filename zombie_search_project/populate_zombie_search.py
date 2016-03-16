@@ -37,7 +37,7 @@ badges = {"Killer":{0:"You have not earned the achievement yet.",
         "Party":{0:"You have not earned the achievement yet.",
                     10:"You have had 10 people in your party.",
                     20:"You have had 20 people in your party.",
-                    40:"You have had 40 people in your party."}
+                    40:"You have had 40 people in your party."}}
 
 def populate():
     print "Populating Badges..."
@@ -150,7 +150,7 @@ def add_player(user, games_played, total_days, avg_days,
     p.most_kills = most_kills
     p.total_kills = total_kills
     p.most_people = most_people
-    p.slug = user.username #make sure this works!!
+    p.slug = user.username
     p.save()
     return p
 
@@ -163,7 +163,6 @@ def add_user(name,password,active):
     return u
 
 def add_achievement(player,badge,date):
-    print player, badge, date
     achievements = Achievement.objects.filter(player=player)
     try:
         for achi in achievements:
@@ -177,7 +176,6 @@ def add_achievement(player,badge,date):
         pass
     a = Achievement.objects.get_or_create(player=player,
                                             badge=badge, date_awarded = date)
-    #a.save()
 
 
 # Start execution here (^_^)V
