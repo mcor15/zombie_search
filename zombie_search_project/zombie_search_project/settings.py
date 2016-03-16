@@ -26,7 +26,6 @@ SECRET_KEY = '&a9_9x&(s=wx@u6h=gl=d0c0i6t6r_%39$$ao_bpfe)cq_11=u'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 TEMPLATE_DIRS = (TEMPLATE_PATH,)
 

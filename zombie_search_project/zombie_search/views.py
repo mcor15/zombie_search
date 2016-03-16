@@ -7,6 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from zombie_search.forms import UserForm, PlayerForm
 
+from game import Game
+
+
+
 def get_user_slug(request):
     username = request.user
     player = Player.objects.get(user = username)
@@ -156,8 +160,49 @@ def register(request):
 def splash(request):
     return render(request, 'zombie_search/splash.html')
 @login_required
-def game(request):
-    return render(request, 'zombie_search/In_Game.html')
+
+def game(request, houseNumber, roomNumber, action):
+    p=Player.objects.get_or_create(user=request.user)[0]
+    g = Game()
+    g.start_new_day()
+    g.player_state=p.player_state
+    g.update_state=p.update_state
+    g.game_state=p.game_state
+    g.street=p.street
+    g.take_turn(action,houseNumber)
+    if(g.game_state=="STREET"):
+        if(action=="MOVE"):
+            g.take_turn(action,houseNumber)
+        if(action=="ENTER"):
+            g.take_turn(action)
+    if(g.game_state=="HOUSE"):
+        if(action=="SEARCH"):
+            g.take_turn(action,houseNumber)
+        if(action=="EXIT"):
+            g.take_turn(action)
+    if(g.is_day_over()):
+        g.end_day()
+    p.player_state=g.player_state
+    p.street=g.street
+    p.update_state=g.update_state
+    p.game_state=g.game_state
+    p.save()
+    houses=p.street.house_list
+    context_dict={'slug':get_user_slug(request),
+                  'Party_Size':p.player_state.party,
+                  'Ammo':p.player_state.ammo,
+                  'Food':p.player_state.food,
+                  'Party_Size':p.player_state.party,
+                  'houses':houses,
+                  'num_of_houses':range(1,p.street.num_of_houses),
+                  'currentHouse':houseNumber,
+                  'Day':p.player_state.days,
+                  'Time':g.time_left,
+                  'Killed':g.player_state.kills,
+                  'roomNumber':roomNumber
+                  }
+
+    return render(request, 'zombie_search/In_Game.html',context_dict )
 
 @login_required
 def player_logout(request):
