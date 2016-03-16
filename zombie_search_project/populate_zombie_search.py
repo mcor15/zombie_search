@@ -1,4 +1,4 @@
-#Vr.1 Matthew
+#Vr.3 Matthew
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'zombie_search_project.settings')
 
@@ -15,48 +15,48 @@ from game import Game
 from streetfactory import StreetFactory
 from game import PlayerState
 
-users = ["jill", "jim","joe","Tyreese Williams","Sasha Williams","Shane Walsh",
-"Bob Stookey","Gabriel Stokes","Bill","Francis", "Louis", "Zoey", "Coach",
- "Ellis", "Nick","Rochelle","Chris Redfield", "Jill Valentine",
-  "Marcus Campbell","Ed Jones","Maya Torres","Marcus Gormley"]
+#28 users
+users = ["jill", "jim","joe","left4dead","zombie_game_king","youtube-gamer","@ttackOnTitan",
+"C++","this.toString","TyreeseWilliams","SashaWilliams","ShaneWalsh",
+"BobStookey","GabrielStokes","Bill","Francis", "Louis", "Zoey", "Coach",
+ "Ellis", "Nick","Rochelle","ChrisRedfield", "JillValentine",
+  "MarcusCampbell","EdJones","MayaTorres","MarcusGormley"]
 
-#Chanage this |
-#             V
-badges = {"Killer":
-            ["You are the killer of zombies.",
-            [0,]],
-        "Zurvivalist Gold":
-            ["You've come this far but death does come to us all.",
-            [20]],
-        "Stamina":
-            ["You just can't get enough of this game.",
-            [20]],
-        "Party! Gold":
-            ["You're everyone best friend...excpet zombies of course",
-            [40]]}
+badges = {"Killer":{0:"You have not earned the achievement yet.",
+                    10:"You have killed 10 zombies.",
+                    20:"You have killed 20 zombies.",
+                    50:"You have killed 50 zombies."},
+        "Survival":{0:"You have not earned the achievement yet.",
+                    5:"You have surrived 5 days.",
+                    10:"You have surrived 10 days.",
+                    20:"You have surrived 20 days."},
+        "Stamina":{0:"You have not earned the achievement yet.",
+                    5:"You have played 5 games.",
+                    10:"You have played 10 games.",
+                    20:"You have played 20 games."},
+        "Party":{0:"You have not earned the achievement yet.",
+                    10:"You have had 10 people in your party.",
+                    20:"You have had 20 people in your party.",
+                    40:"You have had 40 people in your party."}
 
 def populate():
     print "Populating Badges..."
-    '''
     for badge in badges:
-        criteria = badges[badge][1][0]
-
-        if badge[-4:] == "Gold":
-            icon = "\static\img\gold_cup.jpg"
-            level = 3
-        elif badge[-6:] == "Silver":
-            icon = "\static\img\silver_cup.jpg"
-            level = 2
-        elif badge[-6:] == "Bronze":
-            icon = "\static\img" + r"\b"+ "ronze_cup.jpg" #python escape character
-            level = 1
-        else:
-            icon = "\static\img"+ r"\n"+ "o_cup.jpg" #python escape character
-            level = 0
-        add_badge(badge,badges[badge][0],criteria,level,icon)
+        level = 0
+        for criteria in badges[badge]:
+            if level  == 3:
+                icon = "\static\img\gold_cup.jpg"
+            elif level  == 2:
+                icon = "\static\img\silver_cup.jpg"
+            elif level  == 1:
+                icon = "\static\img" + r"\b"+ "ronze_cup.jpg" #python escape character
+            else:
+                icon = "\static\img"+ r"\n"+ "o_cup.jpg" #python escape character
+            #print "badge>"+ badge+ " criteria>"+str(badges[badge][criteria])+" level>" +str(level) +" icon>" +icon
+            add_badge(badge,badges[badge][criteria],criteria,level,icon)
+            level = level +1
     print("Done")
-'''
-    add_badge("Stamina","you surrived",10,1,"\static\img" + r"\b"+ "ronze_cup.jpg")
+
     print "Populating Users and Achievements..."
     fives = 0
     twos = 0
@@ -64,7 +64,7 @@ def populate():
     for name in users:
         user = add_user(name,make_password(name),True)
         if threes != 0:
-            avg_days = (twos/threes)
+            avg_days = (twos/(threes*1.0))
         else:
             avg_days =0
         p = add_player(user, threes, twos, avg_days, threes, twos, fives, fives)
@@ -81,88 +81,47 @@ def populate():
     print "...Zombie Search database population complete."
 
     # Print out what we have added to the user.
+    print "Users/Players"
     for u in User.objects.all():
         for p in Player.objects.filter(user=u):
             print "- {0}".format(str(p))
+    print ""
 
+    print "Badges"
+    for b in Badge.objects.all():
+        print "- {0}".format(str(b))
+    print ""
+
+    print "Achievements"
+    for a in Achievement.objects.all():
+        print "- {0}".format(str(a))
+    print ""
+
+    '''u= User.objects.all()
+    u = u.get(username="Marcus Gormley")
+    p = Player.objects.all()
+    p = p.get(user=u)
+    b = Badge.objects.all()
+    b = b.get(type = "Killer")
+    add_achievement(p,b, date(2026, 3, 11))'''
 
 def check_achievements(player):
 
-    b = Badge.objects.filter(type = "Stamina")
-    b = b.get(level=1)
-    add_achievement(player,b,date.today())
-    '''
-    if player.games_played < 5:
-        b = Badge.objects.get(type = "Stamina not awarded")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.games_played >= 5:
-        b = Badge.objects.get(type = "Stamina Bronze")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.games_played >= 10:
-        b = Badge.objects.get(type = "Stamina Silver")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.games_played >= 20:
-        b = Badge.objects.get(type = "Stamina Gold")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
+    for badge in Badge.objects.all():
+        if badge.type == "Survival":
+            if player.total_days >= badge.criteria:
+                add_achievement(player,badge, date.today())
+        if badge.type == "Killer":
+            if player.total_days >= badge.criteria:
+                add_achievement(player,badge, date.today())
+        if badge.type == "Stamina":
+            if player.games_played >= badge.criteria:
+                add_achievement(player,badge, date.today())
+        if badge.type == "Party":
+            if player.most_people >= badge.criteria:
+                add_achievement(player,badge, date.today())
 
-    if player.total_days < 10:
-        b = Badge.objects.get(type = "Za Killer not awarded")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.total_days >= 10:
-        b = Badge.objects.get(type = "Za Killer Bronze")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.total_days >= 20:
-        b = Badge.objects.get(type = "Za Killer Silver")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.total_days >= 50:
-        b = Badge.objects.get(type = "Za Killer Gold")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-
-    if player.most_people <10 :
-        b = Badge.objects.get(type = "Party! not awarded")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.most_people >= 10:
-        b = Badge.objects.get(type = "Party! Bronze")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.most_people >= 20:
-        b = Badge.objects.get(type = "Party")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.most_people >= 40:
-        b = Badge.objects.get(type = "Party! Gold")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-
-
-    if player.total_kills < 5:
-        b = Badge.objects.get(type = "Zurvivalist not awarded", level=1)
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.total_kills >= 5:
-        b = Badge.objects.get(type = "Zurvivalist Bronze")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.total_kills >= 10:
-        b = Badge.objects.get(type = "Zurvivalist Silver")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-    if player.total_kills >= 20:
-        b = Badge.objects.get(type = "Zurvivalist Gold")
-        #date(2016,06,16)
-        add_achievement(player,b,date.today())
-'''
-
-
+    #add_achievement(player,b,date.today())
 
 
 def add_badge(name,description,criteria,level,icon):
@@ -198,11 +157,24 @@ def add_player(user, games_played, total_days, avg_days,
 def add_user(name,password,active):
     u = User.objects.get_or_create(username=name)[0]
     u.password = password
+    u.email = name+"@glasgow.ac.uk"
     u.is_active = active
     u.save()
     return u
 
 def add_achievement(player,badge,date):
+    print player, badge, date
+    achievements = Achievement.objects.filter(player=player)
+    try:
+        for achi in achievements:
+            old_badge = achi.badge
+            if old_badge.type == badge.type:
+                achi.badge = badge
+                achi.date_awarded=date
+                achi.save()
+                return
+    except:
+        pass
     a = Achievement.objects.get_or_create(player=player,
                                             badge=badge, date_awarded = date)
     #a.save()

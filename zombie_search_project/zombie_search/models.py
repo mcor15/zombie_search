@@ -22,7 +22,7 @@ class Player(models.Model):
     total_kills = models.IntegerField(default=0)
     most_people = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs): #Slug to be removed?
         self.slug = slugify(self.user.username)
         super(Player, self).save(*args, **kwargs)
 
@@ -31,10 +31,10 @@ class Player(models.Model):
 
 class Badge(models.Model):
     type = models.CharField(max_length=10)
-    description = models.CharField(max_length=100)#Changed!!!
+    description = models.CharField(max_length=100)
     criteria = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
-    icon = models.UrlField(blank=True)#fixed???
+    icon = models.URLField(blank=True)#fixed???
 
     def __unicode__(self):
         return self.type
