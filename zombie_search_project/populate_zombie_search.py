@@ -11,7 +11,9 @@ from zombie_search.models import Player, Achievement, Badge, User
 
 from datetime import date
 
-
+from game import Game
+from streetfactory import StreetFactory
+from game import PlayerState
 
 users = ["jill", "jim","joe","Tyreese Williams","Sasha Williams","Shane Walsh",
 "Bob Stookey","Gabriel Stokes","Bill","Francis", "Louis", "Zoey", "Coach",
@@ -176,6 +178,12 @@ def add_player(user, games_played, total_days, avg_days,
                 most_days_survived, most_kills,total_kills,most_people):
     p = Player.objects.get_or_create(user=user)[0]
     #p.profile_picture =
+    g = Game()
+    g.start_new_day()
+    p.player_state=g.player_state
+    p.update_state=g.update_state
+    p.street=g.street
+    p.game_state=g.game_state
     p.games_played = games_played
     p.total_days = total_days
     p.avg_days = avg_days

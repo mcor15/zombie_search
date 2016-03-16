@@ -13,7 +13,7 @@ def main():
     # while the day or game is not over,
     # display the current state of the game,
     # then check what the player wants to do
-
+    print("asd")
     g = Game()
     while not g.is_game_over():
         #kick off the day

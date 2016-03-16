@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from picklefield.fields import PickledObjectField
 
 # Create your models here. \(^0^)/
 
@@ -9,7 +10,10 @@ class Player(models.Model):
     user = models.OneToOneField(User)
 
     profile_picture = models.ImageField(upload_to='/static/player_avatars', blank=True)
-
+    player_state = PickledObjectField()
+    update_state = PickledObjectField()
+    street = PickledObjectField()
+    game_state = PickledObjectField()
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
     avg_days = models.FloatField(default=0.0)

@@ -38,12 +38,12 @@ Plan your moves carefully, as each action takes up time within the day! The game
 			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Save</button></a></li>
 		</ul>
 		<ul>
-			<li><strong>Party Size:</strong></li>
-			<li><strong>Ammo:</strong></li>
-			<li><strong>Food:</strong></li>
-			<li><strong>Day:</strong></li>
-			<li><strong>Zombies Killed:</strong></li>
-			<li><strong>Time Left in Day:</strong></li>
+			<li><strong>Party Size:{{ Party_Size }}</strong></li>
+			<li><strong>Ammo:{{ Ammo }}</strong></li>
+			<li><strong>Food:{{ Food }}</strong></li>
+			<li><strong>Day:{{ Day }}</strong></li>
+			<li><strong>Zombies Killed:{{ Killed }}</strong></li>
+			<li><strong>Time Left in Day:{{ Time }}</strong></li>
 		</ul>
 	</div>
 	
@@ -53,6 +53,7 @@ Plan your moves carefully, as each action takes up time within the day! The game
 	
 	
 	<div>
+
 	{% block text %}"you are on a street. There are 5 houses on this street. What would you like to do?" {% endblock %}
 	</div>
 	{% block buttons %}
@@ -63,18 +64,15 @@ Plan your moves carefully, as each action takes up time within the day! The game
 					<div class="dropup" style="position: relative; top: 10px">
 						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></button>
 						<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
-						{% for house in houses %}
-							{% if house.searched %}
-								<li style = "color=grey"><a href="#">House {{ house.number }} (searched)</a></li>
-							{% else %}
-								<li><a href="#">House {{ house.number }}</a></li>
-							{% endif %}
-						{% endfor %}
+
+						    {% for i in num_of_houses %}
+								<li><a href="{% url 'zombie_search.views.game' houseNumber=i roomNumber=0 action="MOVE" %}">House {{ i }} </a></li>
+						    {% endfor %}
 						</ul>
 					</div>
 				</li>
 				<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
-				<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
+				<li><a href="{% url 'zombie_search.views.game' houseNumber=currentHouse roomNumber=0 action="ENTER" %}"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
 				<li><a><button id ="ingame_about" type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 			</ul>
 		</div>
@@ -89,5 +87,8 @@ Plan your moves carefully, as each action takes up time within the day! The game
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
 <script src="{% static 'js/zombie-jquery.js' %}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
 </html>
