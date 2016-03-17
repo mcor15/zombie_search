@@ -1,6 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 strict//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
 {% extends 'zombie_search/Base.html' %}
 
 {% load static %}
@@ -10,6 +7,8 @@
 {% block header %}Login{% endblock %}
 
 {% block body %}
+<br />
+<br />
     <form id="login_form" method="post" action="/zombie_search/login/">
         {% csrf_token %}
          Username: <input type="text" name="username" value="" size="50" />
