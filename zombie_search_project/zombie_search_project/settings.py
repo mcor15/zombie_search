@@ -96,9 +96,9 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
-print MEDIA_URL
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
-print MEDIA_ROOT
+
 
 #Hashers for password
 PASSWORD_HASHERS = (

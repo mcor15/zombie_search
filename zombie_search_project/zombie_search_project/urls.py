@@ -15,7 +15,7 @@ urlpatterns = patterns('',
 	url(r'^zombie_search/', include('zombie_search.urls')),
 )
 
-<<<<<<< HEAD
+
 #urlpatterns += staticfiles_urlpatterns()
 # UNDERNEATH your urlpatterns definition, add the following two lines:
 if settings.DEBUG:
@@ -24,13 +24,3 @@ if settings.DEBUG:
         (r'^media/(?P<path>.*)',
         'serve',
         {'document_root': settings.MEDIA_ROOT}), )
-
-urlpatterns += staticfiles_urlpatterns()
-
-if settings.DEBUG:
-    urlpatterns += patterns(
-        'django.views.static',
-        (r'^media/(?P<path>.*)',
-        'serve',
-        {'document_root': settings.MEDIA_ROOT}),)
-
