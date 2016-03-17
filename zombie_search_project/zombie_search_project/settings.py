@@ -89,15 +89,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
 STATIC_PATH = os.path.join(PROJECT_PATH,'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
 
-MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
+
+
 
 
 #Hashers for password
