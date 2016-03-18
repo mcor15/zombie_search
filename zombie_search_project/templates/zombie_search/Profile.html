@@ -17,7 +17,7 @@
 	<div id="player_stats">
 
 		{% if player.profile_picture %}
-			<img src="{{ player.profile_picture }}" alt= "{{ player.user.username }}'s profile picture" />
+			<img src="{{ player.profile_picture.url }}" alt= "{{ player.user.username }}'s profile picture" />
 		{% else %}
 			<img src="{% static 'img/default_profilepic.jpg' %}" alt="default profile pic" />
 		{% endif %}

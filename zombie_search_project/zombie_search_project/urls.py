@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 )
 
 
-#urlpatterns += staticfiles_urlpatterns()
+urlpatterns += staticfiles_urlpatterns()
 # UNDERNEATH your urlpatterns definition, add the following two lines:
 if settings.DEBUG:
     urlpatterns += patterns(

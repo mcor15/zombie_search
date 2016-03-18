@@ -5,7 +5,7 @@
 {% block header %}Update Profile Picture{% endblock %}
 
 {% block body %}
-  <form id="user_form" method="post" action="/zombie_search/profile/{{ slug }}/" enctype="multipart/form-data" style="font-size:50%;">
+  <form id="user_form" method="post" action="/zombie_search/update/" enctype="multipart/form-data" style="font-size:50%;">
 	   {% csrf_token %}
      {{ player_form.as_p }}
      <input type="submit" name="submit" value="update" />

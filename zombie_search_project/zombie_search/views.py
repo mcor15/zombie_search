@@ -84,11 +84,32 @@ def profile(request, user_slug):
     return render_to_response('zombie_search/Profile.html', context_dict, context)
 
 def update(request):
+    if request.method == 'POST':
+        u = User.objects.get(username=request.user)
+        p = Player.objects.get(user=u)
+        player_form = updatePlayer(data=request.POST, instance=p)
+        if player_form.is_valid():
+            player = player_form.save(commit=False)
+            player.user = request.user
+            if 'profile_picture' in request.FILES:
+                player.profile_picture = request.FILES['profile_picture']
+            player.save()
+        else:
+            print player_form.errors
+    else:
+        player_form = updatePlayer()
+
+    context_dict = {'player_form': player_form, 'slug': get_user_slug(request)}
+
+    return render(request,'zombie_search/update.html', context_dict )
+
+    '''
     player_form = updatePlayer(data=request.POST, instance=request.user)
+    print "player from " +str(updatePlayer)
     player = player_form.save(commit = False)
     player.save()
 
-    return render(request, 'zombie_search/update.html', {'player_form': player_form, 'slug': get_user_slug(request)})
+    return render(request, 'zombie_search/update.html', {'player_form': player_form, 'slug': get_user_slug(request)})'''
 
 def player_login(request):
     if request.method == 'POST':
