@@ -2,6 +2,7 @@ __author__ = 'leif'
 import math
 import random
 from streetfactory import StreetFactory
+import streetfactory
 from copy import deepcopy
 
 MAX_MOVE_TIME = 10
@@ -17,7 +18,6 @@ LENGTH_OF_DAY = 100
 class PlayerState(object):
 
     def __init__(self):
-        print "asf"
         self.party = 1
         self.ammo = 2
         self.food = 3
@@ -157,7 +157,6 @@ class Game(object):
 
 
     def __action_move(self, value=None):
-
         # Update where the Player is. i.e. which house are they infront of
         moved = False
         if value is None:

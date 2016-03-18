@@ -142,6 +142,7 @@ def add_player(user, games_played, total_days, avg_days,
     p.player_state=g.player_state
     p.update_state=g.update_state
     p.street=g.street
+    p._time_left=g._time_left
     p.game_state=g.game_state
     p.games_played = games_played
     p.total_days = total_days

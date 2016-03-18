@@ -14,6 +14,7 @@ class Player(models.Model):
     update_state = PickledObjectField()
     street = PickledObjectField()
     game_state = PickledObjectField()
+    _time_left=PickledObjectField()
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
     avg_days = models.FloatField(default=0.0)
@@ -22,7 +23,7 @@ class Player(models.Model):
     total_kills = models.IntegerField(default=0)
     most_people = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
-    def save(self, *args, **kwargs): #Slug to be removed?
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
         super(Player, self).save(*args, **kwargs)
 
@@ -34,7 +35,7 @@ class Badge(models.Model):
     description = models.CharField(max_length=100)
     criteria = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
-    icon = models.URLField(blank=True)#fixed???
+    icon = models.URLField(blank=True)
 
     def __unicode__(self):
         return self.type

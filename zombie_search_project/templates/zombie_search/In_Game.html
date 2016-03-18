@@ -35,7 +35,7 @@ Plan your moves carefully, as each action takes up time within the day! The game
 	<div id="game_stats">
 		<ul style="float: left; margin-top: 10px">
 			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
-			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Save</button></a></li>
+			<li role="presentation"><a href="{% url 'zombie_search.views.game' houseNumber=0 roomNumber=0 action="WAIT" %}"><button type="button" class="btn btn-default navbar-btn">Save</button></a></li>
 		</ul>
 		<ul>
 			<li><strong>Party Size:{{ Party_Size }}</strong></li>
@@ -48,32 +48,88 @@ Plan your moves carefully, as each action takes up time within the day! The game
 	</div>
 	
 	{% block image %}
-	<img src = "{% static 'img/street.jpg' %}" alt="street" />
+        {% if game_state == "ZOMBIE" %}
+        	<img src = "{% static 'img/zombie.jpg' %}" alt="street" />
+        {% endif %}
+        {% if game_state == "HOUSE" %}
+            {% if visited_room == False %}
+        	<img src = "{% static 'img/house.jpg' %}" alt="street" />
+            {% endif %}
+            {% if visited_room == True %}
+        	<img src = "{% static 'img/searched1.jpg' %}" alt="street" />
+            {% endif %}
+        {% endif %}
+        {% if game_state == "STREET" %}
+	        <img src = "{% static 'img/street.jpg' %}" alt="street" />
+        {% endif %}
 	{% endblock %}
 	
 	
 	<div>
 
-	{% block text %}"you are on a street. There are 5 houses on this street. What would you like to do?" {% endblock %}
+	{% block text %}
+        you are on a street. There are 5 houses on this street. What would you like to do?
+        {% if update_state.party > 0 %}
+            You've found {{ update_state.party }} new party members !
+        {% endif %}
+        {% if update_state.ammo > 0 %}
+            You've found {{ update_state.ammo }} ammo!
+        {% endif %}
+        {% if update_state.food > 0 %}
+            You've found {{ update_state.food }} food!
+        {% endif %}
+        {% if update_state.kills > 0 %}
+            You've killed {{ update_state.kills }} zombies !
+        {% endif %}
+    {% endblock %}
+
 	</div>
 	{% block buttons %}
 	<nav class = "navbar navbar-fixed-bottom" >
 		<div class = "container fluid">
 			<ul class="nav nav-pills">
 				<li>
+                    {% if game_state == "STREET" %}
 					<div class="dropup" style="position: relative; top: 10px">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></button>
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Move to<span class="caret"></span></button>
 						<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
-
 						    {% for i in num_of_houses %}
 								<li><a href="{% url 'zombie_search.views.game' houseNumber=i roomNumber=0 action="MOVE" %}">House {{ i }} </a></li>
 						    {% endfor %}
 						</ul>
 					</div>
+                    {% endif %}
+                    {% if game_state == "ZOMBIE" %}
+                        <li><a href="{% url 'zombie_search.views.game' houseNumber=currentHouse roomNumber=0 action="FIGHT" %}"><button type="button" class="btn btn-default navbar-btn">Fight</button></a></li>
+                    {% endif %}
+                    {% if game_state == "ZOMBIE" %}
+                        <li><a href="{% url 'zombie_search.views.game' houseNumber=currentHouse roomNumber=0 action="RUN" %}"><button type="button" class="btn btn-default navbar-btn">Run</button></a></li>
+                    {% endif %}
+                    {% if game_state == "HOUSE" %}
+					<div class="dropup" style="position: relative; top: 10px">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></button>
+						<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
+						    {% for i in room_list %}
+								<li><a href="{% url 'zombie_search.views.game' houseNumber=currentHouse roomNumber=i.room_number action="SEARCH" %}">
+                                    Room {{ i.room_number }}
+                                    {% if i.visited == True %}
+                                    Visited
+                                    {% endif %}
+                                </a></li>
+						    {% endfor %}
+						</ul>
+					</div>
+                    {% endif %}
+
 				</li>
-				<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
+				<li><a href="{% url 'zombie_search.views.game' houseNumber=0 roomNumber=0 action="WAIT" %}"><button type="button" class="btn btn-default navbar-btn">Wait</button></a></li>
+                {% if game_state == "HOUSE" %}
+                    <li><a href="{% url 'zombie_search.views.game' houseNumber=currentHouse roomNumber=0 action="EXIT" %}"><button type="button" class="btn btn-default navbar-btn">Exit</button></a></li>
+                {% endif %}
+                {% if game_state == "STREET" %}
 				<li><a href="{% url 'zombie_search.views.game' houseNumber=currentHouse roomNumber=0 action="ENTER" %}"><button type="button" class="btn btn-default navbar-btn">Enter</button></a></li>
-				<li><a><button id ="ingame_about" type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+				{% endif %}
+                <li><a><button id ="ingame_about" type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 			</ul>
 		</div>
 	</nav>

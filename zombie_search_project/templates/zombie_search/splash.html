@@ -36,11 +36,11 @@ Plan your moves carefully, as each action takes up time within the day! The game
 	<img src="{% static 'img/Splash.jpg' %}" />
 	<nav class ="navbar navbar-fixed-top">
 	<ul class="nav nav-pills" id="pills">
-		<li><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">New Game</button></a></li>
+		<li><a href="{% url 'zombie_search.views.game' houseNumber=0 roomNumber=0 action="NEW" %}"><button type="button" class="btn btn-default navbar-btn">New Game</button></a></li>
 		<li><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
 	</ul>
 		<ul class="nav nav-pills" id="pills">
-		<li><a href="/zombie_search/game"><button type="button" class="btn btn-default navbar-btn">Load Game</button></a></li>
+		<li><a href="{% url 'zombie_search.views.game' houseNumber=0 roomNumber=0 action="WAIT" %}"><button type="button" class="btn btn-default navbar-btn">Load Game</button></a></li>
 		<li><button id="ingame_about" type="button" class="btn btn-default navbar-btn">Instructions</button></li>
 	</ul>
 	

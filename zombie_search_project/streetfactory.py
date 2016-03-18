@@ -22,7 +22,8 @@ class Street(object):
         return False
 
     def move_to_house(self,i):
-        if (i >= 0) and (i < self.num_of_houses):
+        houses=self.num_of_houses
+        if ((i >= 0) and (i < houses)):
             self.current_house = i
             return True
         return False

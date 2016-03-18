@@ -16,10 +16,10 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/zombie_search_project$dbtest.coverage" NAME="dbtest Coverage Results" MODIFIED="1458097875687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/zombie_search_project$populate_zombie_search___Copy.coverage" NAME="populate_zombie_search - Copy Coverage Results" MODIFIED="1458098158275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/zombie_search_project$populate_zombie_search.coverage" NAME="populate_zombie_search Coverage Results" MODIFIED="1458098921858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/zombie_search_project$populate_zombie_search.coverage" NAME="populate_zombie_search Coverage Results" MODIFIED="1458267000854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/zombie_search_project$models.coverage" NAME="models Coverage Results" MODIFIED="1458096378995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/zombie_search" />
     <SUITE FILE_PATH="coverage/zombie_search_project$game.coverage" NAME="game Coverage Results" MODIFIED="1458116359975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../game/engine" />
-    <SUITE FILE_PATH="coverage/zombie_search_project$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1458119164882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../game/engine" />
+    <SUITE FILE_PATH="coverage/zombie_search_project$main__1_.coverage" NAME="main (1) Coverage Results" MODIFIED="1458270624239" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../game/engine" />
     <SUITE FILE_PATH="coverage/zombie_search_project$main.coverage" NAME="main Coverage Results" MODIFIED="1458097843816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/engine" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -34,73 +34,98 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../game/engine/main.py">
+      <file leaf-file-name="splash.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/zombie_search/splash.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding>
-                <element signature="e#23#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
+<<<<<<< Updated upstream
+              <caret line="42" column="99" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zombie_search/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="171" column="35" selection-start-line="171" selection-start-column="35" selection-end-line="171" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#55#0" expanded="true" />
-                <element signature="e#750#1101#0" expanded="false" />
-                <element signature="e#1939#2977#0" expanded="false" />
-                <element signature="e#3090#3631#0" expanded="false" />
-                <element signature="e#3660#4531#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="2.2398648">
+              <caret line="87" column="19" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
+=======
+              <caret line="42" column="99" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="99" />
+>>>>>>> Stashed changes
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/zombie_search/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zombie_search/urls.py">
+              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+              <folding />
+=======
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/zombie_search/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.54362416">
+              <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#0#55#0" expanded="true" />
+                <element signature="e#3102#3643#0" expanded="false" />
+                <element signature="e#3672#4543#0" expanded="false" />
               </folding>
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="In_Game.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="In_Game.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/zombie_search/In_Game.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1211401">
-              <caret line="86" column="71" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="-47.73077">
+              <caret line="73" column="100" selection-start-line="73" selection-start-column="100" selection-end-line="73" selection-end-column="100" />
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/zombie_search/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+=======
+      <file leaf-file-name="In_Game.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/zombie_search/In_Game.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769">
+              <caret line="129" column="100" selection-start-line="129" selection-start-column="100" selection-end-line="129" selection-end-column="100" />
+              <folding />
+>>>>>>> Stashed changes
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="populate_zombie_search.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/populate_zombie_search.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+<<<<<<< Updated upstream
+              <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+=======
+              <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -116,16 +141,19 @@
         <option value="$PROJECT_DIR$/dbtest.py" />
         <option value="$PROJECT_DIR$/populate_zombie_search - Copy.py" />
         <option value="$PROJECT_DIR$/templates/zombie_search/About.html" />
-        <option value="$PROJECT_DIR$/templates/zombie_search/Base.html" />
         <option value="$PROJECT_DIR$/zombie_search_project/settings.py" />
         <option value="$PROJECT_DIR$/zombie_search/urls.py" />
         <option value="$PROJECT_DIR$/zombie_search/models.py" />
         <option value="$PROJECT_DIR$/populate_zombie_search.py" />
-        <option value="$PROJECT_DIR$/templates/zombie_search/In_Game.html" />
         <option value="$PROJECT_DIR$/../../../game/engine/game.py" />
         <option value="$PROJECT_DIR$/../../../game/engine/main.py" />
+        <option value="$PROJECT_DIR$/templates/zombie_search/Base.html" />
+        <option value="$PROJECT_DIR$/templates/zombie_search/splash.html" />
+        <option value="$PROJECT_DIR$/streetfactory.py" />
+        <option value="$PROJECT_DIR$/house.py" />
         <option value="$PROJECT_DIR$/game.py" />
         <option value="$PROJECT_DIR$/zombie_search/views.py" />
+        <option value="$PROJECT_DIR$/templates/zombie_search/In_Game.html" />
       </list>
     </option>
   </component>
@@ -258,24 +286,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie_search_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie_search_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -628,8 +638,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.main (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.game" />
-        <item index="2" class="java.lang.String" itemvalue="Python.populate_zombie_search" />
+        <item index="1" class="java.lang.String" itemvalue="Python.populate_zombie_search" />
+        <item index="2" class="java.lang.String" itemvalue="Python.game" />
         <item index="3" class="java.lang.String" itemvalue="Python.populate_zombie_search - Copy" />
         <item index="4" class="java.lang.String" itemvalue="Python.dbtest" />
       </list>
@@ -649,28 +659,36 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="0" width="1377" height="728" extended-state="1" />
+    <frame x="-8" y="0" width="1377" height="728" extended-state="0" />
+<<<<<<< Updated upstream
+    <editor active="false" />
+=======
     <editor active="true" />
+>>>>>>> Stashed changes
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24908155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24908155" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22258064" sideWeight="0.5025754" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+<<<<<<< Updated upstream
+=======
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23387097" sideWeight="0.49742457" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23064516" sideWeight="0.49742457" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -693,52 +711,16 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../../game/engine/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../game/engine/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="19" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="e#20#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zombie_search/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="165" column="14" selection-start-line="165" selection-start-column="14" selection-end-line="165" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-            <element signature="e#750#1101#0" expanded="false" />
-            <element signature="e#1939#2977#0" expanded="false" />
-            <element signature="e#3090#3631#0" expanded="false" />
-            <element signature="e#3660#4531#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zombie_search/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -747,7 +729,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -764,9 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
-          <folding>
-            <element signature="e#23#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -774,9 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="8" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
-          <folding>
-            <element signature="e#20#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -784,13 +760,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< Updated upstream
+          <folding />
+=======
           <folding>
             <element signature="e#0#55#0" expanded="true" />
-            <element signature="e#750#1101#0" expanded="false" />
-            <element signature="e#1939#2977#0" expanded="false" />
-            <element signature="e#3090#3631#0" expanded="false" />
-            <element signature="e#3660#4531#0" expanded="false" />
+            <element signature="e#3102#3643#0" expanded="false" />
+            <element signature="e#3672#4543#0" expanded="false" />
           </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -798,9 +776,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -809,7 +785,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -819,13 +795,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="68" column="118" selection-start-line="68" selection-start-column="118" selection-end-line="68" selection-end-column="118" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/zombie_search/splash.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7873832">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -900,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zombie_search/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zombie_search/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -958,25 +920,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="43" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../game/engine/house.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-81.48276">
           <caret line="139" column="108" selection-start-line="139" selection-start-column="101" selection-end-line="139" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.230769">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -996,13 +943,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/jquery-2.2.1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/zombie-style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1030,46 +970,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.3076925">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/zombie_search_project/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zombie_search/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/populate_zombie_search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85682327">
-          <caret line="216" column="45" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/zombie_search/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1078,49 +984,196 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="57" column="19" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zombie_search_project/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Base.html">
+      <provider selected="true" editor-type-id="text-editor">
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#20#31#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../game/engine/main.py">
+    <entry file="file://$PROJECT_DIR$/../../../game/engine/game.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <caret line="57" column="19" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Edit_account.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Base.html">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> Stashed changes
+        <state vertical-scroll-proportion="-12.423077">
+          <caret line="64" column="44" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zombie_search/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="50" selection-start-line="12" selection-start-column="50" selection-end-line="12" selection-end-column="50" />
           <folding>
-            <element signature="e#23#33#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.724138">
+          <caret line="200" column="41" selection-start-line="200" selection-start-column="41" selection-end-line="200" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/streetfactory.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.97762865">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/house.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7606264">
+          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/Profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1710213">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../game/engine/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.03803132">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+<<<<<<< Updated upstream
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/splash.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="45" selection-start-line="66" selection-start-column="45" selection-end-line="66" selection-end-column="45" />
+          <caret line="42" column="99" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/In_Game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-47.73077">
+          <caret line="73" column="100" selection-start-line="73" selection-start-column="100" selection-end-line="73" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zombie_search/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/populate_zombie_search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+=======
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/splash.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="99" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="99" />
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/zombie_search/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+=======
+    <entry file="file://$PROJECT_DIR$/templates/zombie_search/In_Game.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="129" column="100" selection-start-line="129" selection-start-column="100" selection-end-line="129" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zombie_search/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/zombie_search/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.2398648">
+          <caret line="87" column="19" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
+=======
+    <entry file="file://$PROJECT_DIR$/populate_zombie_search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="93" column="12" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/zombie_search/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="171" column="35" selection-start-line="171" selection-start-column="35" selection-end-line="171" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.54362416">
+          <caret line="199" column="0" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
           <folding>
             <element signature="e#0#55#0" expanded="true" />
-            <element signature="e#750#1101#0" expanded="false" />
-            <element signature="e#1939#2977#0" expanded="false" />
-            <element signature="e#3090#3631#0" expanded="false" />
-            <element signature="e#3660#4531#0" expanded="false" />
+            <element signature="e#3102#3643#0" expanded="false" />
+            <element signature="e#3672#4543#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/zombie_search/In_Game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1211401">
-          <caret line="86" column="71" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>

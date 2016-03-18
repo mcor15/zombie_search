@@ -6,8 +6,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+
 from zombie_search.forms import UserForm, PlayerForm, updatePlayer
+import copy
 from game import Game
+
+
 
 
 def get_user_slug(request):
@@ -103,13 +107,7 @@ def update(request):
 
     return render(request,'zombie_search/update.html', context_dict )
 
-    '''
-    player_form = updatePlayer(data=request.POST, instance=request.user)
-    print "player from " +str(updatePlayer)
-    player = player_form.save(commit = False)
-    player.save()
 
-    return render(request, 'zombie_search/update.html', {'player_form': player_form, 'slug': get_user_slug(request)})'''
 
 def player_login(request):
     if request.method == 'POST':
@@ -165,51 +163,85 @@ def register(request):
 @login_required
 def splash(request):
     return render(request, 'zombie_search/splash.html')
-@login_required
 
+@login_required
 def game(request, houseNumber, roomNumber, action):
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
-    g.start_new_day()
-    g.player_state=p.player_state
-    g.update_state=p.update_state
-    g.game_state=p.game_state
-    g.street=p.street
-    g.take_turn(action,houseNumber)
+    if(action!="NEW"):
+        g.player_state=copy.deepcopy(p.player_state)
+        g.update_state=copy.deepcopy(p.update_state)
+        g.game_state=copy.deepcopy(p.game_state)
+        g.street=copy.deepcopy(p.street)
+        g._time_left=copy.deepcopy(p._time_left)
+    else:
+        g.start_new_day()
+    visited_room=g.street.get_current_house().room_list[int(roomNumber)].visited
+    if g.game_state():
+        p.total_days+=g.player_state.days
+        p.games_played+=1
+        p.total_kills+=g.player_state.kills
+        p.avg_days=(p.avg_days*float(p.games_played)+float(g.player_state.days))/float(p.games_played)
+        if p.most_days_survived < g.player_state.days:
+            p.most_days_survived = g.player_state.days
+        if p.most_kills < g.player_state.kills:
+            p.most_kills = g.player_state.kills
+        if p.most_people < g.player_state.party:
+            p.most_people = g.player_state.party
+
     if(g.game_state=="STREET"):
         if(action=="MOVE"):
-            g.take_turn(action,houseNumber)
+            g.take_turn(action,int(houseNumber))
         if(action=="ENTER"):
             g.take_turn(action)
-    if(g.game_state=="HOUSE"):
+    elif g.game_state=="HOUSE":
         if(action=="SEARCH"):
-            g.take_turn(action,houseNumber)
+            g.take_turn(action, int(roomNumber))
         if(action=="EXIT"):
             g.take_turn(action)
-    if(g.is_day_over()):
+    else:
+        g.take_turn(action)
+    if g.is_game_over():
+        p.total_days+=g.player_state.days
+        p.games_played+=1
+        p.total_kills+=g.player_state.kills
+        p.avg_days=(p.avg_days*float(p.games_played)+float(g.player_state.days))/float(p.games_played)
+        if p.most_days_survived < g.player_state.days:
+            p.most_days_survived = g.player_state.days
+        if p.most_kills < g.player_state.kills:
+            p.most_kills = g.player_state.kills
+        if p.most_people < g.player_state.party:
+            p.most_people = g.player_state.party
+
+    elif(g.is_day_over()):
         g.end_day()
+        g.start_new_day()
     p.player_state=g.player_state
     p.street=g.street
     p.update_state=g.update_state
     p.game_state=g.game_state
+    p._time_left=g._time_left
     p.save()
-    houses=p.street.house_list
     context_dict={'slug':get_user_slug(request),
-                  'Party_Size':p.player_state.party,
                   'Ammo':p.player_state.ammo,
                   'Food':p.player_state.food,
                   'Party_Size':p.player_state.party,
-                  'houses':houses,
-                  'num_of_houses':range(1,p.street.num_of_houses),
+                  'houses':p.street.house_list,
+                  'num_of_houses':range(0,p.street.num_of_houses),
+                  'num_of_rooms':range(0,len(g.street.get_current_house().room_list)),
                   'currentHouse':houseNumber,
                   'Day':p.player_state.days,
                   'Time':g.time_left,
                   'Killed':g.player_state.kills,
-                  'roomNumber':roomNumber
+                  'visited_room':visited_room,
+                  'roomNumber':roomNumber,
+                  'game_state':g.game_state,
+                  'update_state':g.update_state,
+                  'room_list':g.street.get_current_house().room_list,
+
                   }
 
     return render(request, 'zombie_search/In_Game.html',context_dict )
-
 @login_required
 def player_logout(request):
     logout(request)

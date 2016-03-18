@@ -60,7 +60,7 @@ class House(object):
             food = self.gen_food(player_state, i)
             ammo = self.gen_ammo(player_state)
             zombies = self.gen_zombie(player_state, i)
-            room = Room(people,food,ammo,zombies)
+            room = Room(people,food,ammo,zombies,i)
 
             self.room_list.append(room)
         self.num_of_rooms = number_of_rooms
@@ -121,12 +121,13 @@ class House(object):
 
 class Room(object):
 
-    def __init__(self, people, food, ammo, zombies):
+    def __init__(self, people, food, ammo, zombies,i):
         self.people = people
         self.food = food
         self.ammo = ammo
         self.zombies = zombies
         self.visited = False
+        self.room_number = i
 
 
     def cleared(self):
@@ -135,6 +136,8 @@ class Room(object):
         self.ammo = 0
         self.zombies = 0
         self.visited = True
+
+        print(self.visited)
 
     def __str__(self):
         return 'Room contains People: {people} Food: {food} Ammo: {ammo} Zombies: {zombies} Visted: {visited}'.format(**self.__dict__)
