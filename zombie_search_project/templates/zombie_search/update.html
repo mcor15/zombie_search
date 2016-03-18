@@ -5,9 +5,23 @@
 {% block header %}Update Profile Picture{% endblock %}
 
 {% block body %}
+<br />
+<strong><small>{{ errors }}</small></strong>
+<br />
   <form id="user_form" method="post" action="/zombie_search/update/" enctype="multipart/form-data" style="font-size:50%;">
 	   {% csrf_token %}
-     {{ player_form.as_p }}
+     {% for field in player_form %}
+        Profile Picture:
+        {{ field }}<br />
+      {% endfor %}
+      Email Address: <input type="text" name="email" value="{{ user.email }}" size="50" />
+         <br />
+      Current Password: <input type="password" name="current" value="" size="50" />
+         <br />
+      New Password: <input type="password" name="new" value="" size="50" />
+         <br />
+      Confirm New Password: <input type="password" name="confirm" value = "" size="50" />
+         <br />
      <input type="submit" name="submit" value="update" />
   </form>
 {% endblock %}

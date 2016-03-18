@@ -7,23 +7,33 @@
 {% block body %}
 <br />
 	{% if registered %}
-        <strong>thank you for registering!</strong>
-				<br />
+        <strong>Thank you for registering!</strong>
+				<br /><br />
 				<a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a>
 	{% else %}
-      <form id="user_form" method="post" action="/zombie_search/register/" enctype="multipart/form-data">
+      <form id="user_form" method="post" action="/zombie_search/register/" enctype="multipart/form-data" style="font-size: 75%">
 				{% csrf_token %}
 
 				{% for field in user_form.visible_fields %}
 					<strong>{{ field.label }}</strong><br />
-					<strong><small>{{ field.errors }}</small></strong><br />
+					{% if field.help_text %}
+						<small>{{ field.help_text }}</small><br />
+					{% endif %}
+
+					{% if field.errors %}
+						<strong><small>{{ field.errors }}</small></strong>
+					{% endif %}
 					{{ field }}<br />
-					<small>{{ field.help_text }}</small><br />
 				{% endfor %}
 
 				{% for field in player_form.visible_fields %}
-					{{ field.label }}<br />
-					{{ field.errors }}<br />
+					<strong>{{ field.label }}</strong>
+					<small>(optional)</small><br />
+
+					{% if field.errors %}
+						<strong><small>{{ field.errors }}</small></strong>
+					{% endif %}
+
 					{{ field }}<br />
 				{% endfor %}
 				<input class="btn btn-default navbar-btn" type="submit" name="submit" value="Submit"/>

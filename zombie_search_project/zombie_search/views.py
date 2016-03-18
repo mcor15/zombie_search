@@ -1,18 +1,15 @@
 import random
-from django.shortcuts import render, render_to_response
+from django import forms
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from zombie_search.models import Player, Achievement, Badge
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-
-from zombie_search.forms import UserForm, PlayerForm, updatePlayer
+from zombie_search.forms import UserForm, PlayerForm, UpdateUser
 import copy
 from game import Game
-
-
-
 
 def get_user_slug(request):
     username = request.user
@@ -22,7 +19,6 @@ def get_user_slug(request):
     except:
         user_slug = None
     return user_slug
-
 
 def decode_url(str):
     str = str.replace('_', ' ')
@@ -63,7 +59,7 @@ def about(request):
     return render(request, 'zombie_search/About.html', {'slug':get_user_slug(request)})
 
 def profile(request, user_slug):
-    context = RequestContext(request)
+    #context = RequestContext(request)
 
     try:
         player = Player.objects.get(slug=user_slug)
@@ -71,43 +67,70 @@ def profile(request, user_slug):
         player = None
 
     a = Achievement.objects.filter(player=player)
-    player_badges = []
+    achievements = []
 
     for achievement in a:
-        badge = achievement.badge
-        player_badges += [badge]
+        achievements += [achievement]
 
     u = player.user == request.user
 
     context_dict = {'player': player,
-					'badges': player_badges,
 					'u': u,
+                    'achievements': achievements,
                     'slug': get_user_slug(request),
                     }
 
-    return render_to_response('zombie_search/Profile.html', context_dict, context)
+    return render(request, 'zombie_search/Profile.html', context_dict)
 
+@login_required
 def update(request):
     if request.method == 'POST':
-        u = User.objects.get(username=request.user)
-        p = Player.objects.get(user=u)
-        player_form = updatePlayer(data=request.POST, instance=p)
+        print "testing..."
+        p = Player.objects.get(user=request.user)
+        player_form = PlayerForm(data=request.POST, instance=p)
         if player_form.is_valid():
             player = player_form.save(commit=False)
-            player.user = request.user
             if 'profile_picture' in request.FILES:
                 player.profile_picture = request.FILES['profile_picture']
             player.save()
         else:
             print player_form.errors
+
+        email = request.POST.get('email')
+        user = request.user
+        user.email = email
+        user.save
+
+        current = request.POST.get('current')
+        user = authenticate(username= request.user, password = current)
+        if user:
+            new = request.POST.get('new')
+            confirm = request.POST.get('confirm')
+            if not confirm:
+                return render(request, 'zombie_search/update.html', {'player_form':player_form,
+                                                                    'slug': get_user_slug(request),
+                                                                    'errors':"please confirm your password before submitting"})
+            else:
+                if new == confirm:
+                    user.set_password(new)
+                    user.save()
+                    login(request, user)
+                else:
+                    return render(request, 'zombie_search/update.html', {'player_form':player_form,
+                                                                        'slug': get_user_slug(request),
+                                                                        'errors':"Password did not match. Please try again."})
+        else:
+            return render(request, 'zombie_search/update.html', {'player_form':player_form,
+                                                                'slug': get_user_slug(request),
+                                                                'errors':"Incorrect passwrd supplied. Please try again."})
+        return profile(request, get_user_slug(request))
+
     else:
-        player_form = updatePlayer()
+        player_form = PlayerForm()
 
     context_dict = {'player_form': player_form, 'slug': get_user_slug(request)}
 
     return render(request,'zombie_search/update.html', context_dict )
-
-
 
 def player_login(request):
     if request.method == 'POST':
@@ -121,11 +144,10 @@ def player_login(request):
             return HttpResponseRedirect('/zombie_search/')
 
         else:
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("username or password were incorrect.")
+            return render(request, 'zombie_search/Login.html', {'error': True})
 
     else:
-        return render(request, 'zombie_search/Login.html', {})
+        return render(request, 'zombie_search/Login.html', {'error': False})
 
 def register(request):
     registered = False
@@ -144,10 +166,11 @@ def register(request):
 
             if 'profile_picture' in request.FILES:
                 player.profile_picture = request.FILES['profile_picture']
-
             player.save()
-
             registered = True
+            user = authenticate(username=user_form.cleaned_data['username'],
+                                password=user_form.cleaned_data['password'])
+            login(request, user)
 
         else:
             print user_form.errors, player_form.errors
@@ -177,17 +200,6 @@ def game(request, houseNumber, roomNumber, action):
     else:
         g.start_new_day()
     visited_room=g.street.get_current_house().room_list[int(roomNumber)].visited
-    if g.game_state():
-        p.total_days+=g.player_state.days
-        p.games_played+=1
-        p.total_kills+=g.player_state.kills
-        p.avg_days=(p.avg_days*float(p.games_played)+float(g.player_state.days))/float(p.games_played)
-        if p.most_days_survived < g.player_state.days:
-            p.most_days_survived = g.player_state.days
-        if p.most_kills < g.player_state.kills:
-            p.most_kills = g.player_state.kills
-        if p.most_people < g.player_state.party:
-            p.most_people = g.player_state.party
 
     if(g.game_state=="STREET"):
         if(action=="MOVE"):
@@ -242,6 +254,7 @@ def game(request, houseNumber, roomNumber, action):
                   }
 
     return render(request, 'zombie_search/In_Game.html',context_dict )
+
 @login_required
 def player_logout(request):
     logout(request)

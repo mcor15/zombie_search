@@ -4,9 +4,12 @@
 {% block title %}{{ player.user.username }}{% endblock %}
 
 {% block header %}{{ player.user.username }}{% endblock %}
+
+
+
 {% block profile_button %}
 	{% if u %}
-		<!--don't show the "your profile" link-->
+		<li><a href="/zombie_search/update"><button type="button" class="btn btn-default navbar-btn">Edit Account Details</button></a></li>
 	{% else %}
 		<li><a href="/zombie_search/profile/{{ slug }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>
 	{% endif %}
@@ -20,10 +23,6 @@
 			<img src="{{ player.profile_picture.url }}" alt= "{{ player.user.username }}'s profile picture" />
 		{% else %}
 			<img src="{% static 'img/default_profilepic.jpg' %}" alt="default profile pic" />
-		{% endif %}
-
-		{% if u %}
-		<li><a href="/zombie_search/update"><button type="button" class="btn btn-default navbar-btn">Update Profile Picture</button></a></li>
 		{% endif %}
 
 		<ul>
@@ -46,11 +45,12 @@
 	<div id="trophy">
 		<h1>Trophy Cabinet</h1>
 
-		{% for badge in badges %}
+		{% for a in achievements %}
 			<div id="badge">
-				<li><strong>{{ badge }}</strong></li>
-				<li><img src="{{ badge.icon }}" alt="{{ badge }} trophy" /></li>
-				<li>{{ badge.description }}</li>
+				<li><strong>{{ a.badge }}</strong></li>
+				<li><img src="{{ a.badge.icon }}" alt="{{ a.badge }} trophy" /></li>
+				<li><strong>{{ a.date_awarded }}</strong>
+				<li>{{ a.badge.description }}</li>
 			</div>
 		{% endfor %}
 	</div>
