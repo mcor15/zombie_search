@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, url
 from zombie_search import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = patterns('',
-#    url(r'^$', views.get_leaderboard, name='home'),
     url(r'^$', views.total_kills, name='home'),
 	url(r'^most_kills/$', views.most_kills, name='home'),
 	url(r'^total_days/$', views.total_days, name='home'),
@@ -15,4 +15,6 @@ urlpatterns = patterns('',
 	url(r'^login/$', views.player_login, name='login'),
 	url(r'^register/$', views.register, name='register'),
 	url(r'^logout/$', views.player_logout, name='logout'),
+    url(r'^reset/$', views.password_reset, name='reset'),
+    url(r'^change_password/$', views.password_change ,name='change_password'),
 	)

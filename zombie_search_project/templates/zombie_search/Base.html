@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top container">
 	<ul class="nav">
 		{% if user.is_authenticated %}
 			{% block profile_button %}<li><a href="/zombie_search/profile/{{ slug }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>{% endblock %}
@@ -30,14 +30,15 @@
 
 <!--	<ul class="nav nav-pills pull-right" style="position: relative; top: 10px;">
 		<li>
-			<form class="navbar-form navbar-left" role="search">
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Find a User">
-			</div></li>
+			<form id="search_form" method = "post" action="/zombie_search/search" class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" name="search_text" class="form-control" placeholder="Search by Username">
+				</div>
+		</li>
 		<li>
 			<button type="submit" class="btn btn-default">Submit</button></li>
-		</form>
-	</ul> -->
+			</form>
+	</ul>-->
 </div>
 
 <div id="main">
@@ -48,8 +49,8 @@
 	{% endblock %}
 </div>
 
-<div class="navbar navbar-fixed-bottom">
-	<ul class="nav nav-pills" id="pills">
+<div class="navbar navbar-fixed-bottom container">
+	<ul class="nav"id="sq">
 		<li><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
 		<li><a href="/zombie_search/about"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 		{% if user.is_authenticated %}
@@ -58,6 +59,7 @@
 			<li><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% endif %}
 	</ul>
+
 </div>
 <!--Ajax-->
 <!-- JQuery -->

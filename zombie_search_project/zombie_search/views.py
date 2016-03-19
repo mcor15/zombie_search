@@ -3,13 +3,16 @@ from django import forms
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from zombie_search.models import Player, Achievement, Badge
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import password_reset, password_reset_confirm
 from django.template import RequestContext
 from zombie_search.forms import UserForm, PlayerForm, UpdateUser
 import copy
 from game import Game
+from django.core.mail import send_mail
 
 def get_user_slug(request):
     username = request.user
@@ -85,7 +88,6 @@ def profile(request, user_slug):
 @login_required
 def update(request):
     if request.method == 'POST':
-        print "testing..."
         p = Player.objects.get(user=request.user)
         player_form = PlayerForm(data=request.POST, instance=p)
         if player_form.is_valid():
@@ -98,31 +100,10 @@ def update(request):
 
         email = request.POST.get('email')
         user = request.user
-        user.email = email
-        user.save
+        if email and email != user.email:
+            user.email = email
+            user.save()
 
-        current = request.POST.get('current')
-        user = authenticate(username= request.user, password = current)
-        if user:
-            new = request.POST.get('new')
-            confirm = request.POST.get('confirm')
-            if not confirm:
-                return render(request, 'zombie_search/update.html', {'player_form':player_form,
-                                                                    'slug': get_user_slug(request),
-                                                                    'errors':"please confirm your password before submitting"})
-            else:
-                if new == confirm:
-                    user.set_password(new)
-                    user.save()
-                    login(request, user)
-                else:
-                    return render(request, 'zombie_search/update.html', {'player_form':player_form,
-                                                                        'slug': get_user_slug(request),
-                                                                        'errors':"Password did not match. Please try again."})
-        else:
-            return render(request, 'zombie_search/update.html', {'player_form':player_form,
-                                                                'slug': get_user_slug(request),
-                                                                'errors':"Incorrect passwrd supplied. Please try again."})
         return profile(request, get_user_slug(request))
 
     else:
@@ -131,6 +112,23 @@ def update(request):
     context_dict = {'player_form': player_form, 'slug': get_user_slug(request)}
 
     return render(request,'zombie_search/update.html', context_dict )
+
+def password_change(request):
+    if request.method == 'POST':
+        user = request.user
+        password_form = PasswordChangeForm(user=user, data = request.POST)
+        if password_form.is_valid():
+            user = password_form.save()
+            user.save()
+            update_session_auth_hash(request, user)
+            return profile(request, get_user_slug(request))
+        else:
+            print password_form.errors
+    else:
+        password_form = PasswordChangeForm(request)
+
+    context_dict = {'password_form': password_form, 'slug': get_user_slug(request)}
+    return render(request, 'zombie_search/password_change.html', context_dict)
 
 def player_login(request):
     if request.method == 'POST':

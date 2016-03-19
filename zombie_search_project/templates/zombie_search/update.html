@@ -14,14 +14,9 @@
         Profile Picture:
         {{ field }}<br />
       {% endfor %}
-      Email Address: <input type="text" name="email" value="{{ user.email }}" size="50" />
+      Email Address: <input type="text" name="email" placeholder="{{ user.email }}" size="50" />
          <br />
-      Current Password: <input type="password" name="current" value="" size="50" />
-         <br />
-      New Password: <input type="password" name="new" value="" size="50" />
-         <br />
-      Confirm New Password: <input type="password" name="confirm" value = "" size="50" />
-         <br />
-     <input type="submit" name="submit" value="update" />
+     <input type="submit" name="submit" value="update" /><br />
+   <a href ="/zombie_search/change_password">Change password</a>
   </form>
 {% endblock %}
