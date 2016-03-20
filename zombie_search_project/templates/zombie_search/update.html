@@ -8,15 +8,20 @@
 <br />
 <strong><small>{{ errors }}</small></strong>
 <br />
+<div>
   <form id="user_form" method="post" action="/zombie_search/update/" enctype="multipart/form-data" style="font-size:50%;">
-	   {% csrf_token %}
+    <p>
      {% for field in player_form %}
         Profile Picture:
         {{ field }}<br />
       {% endfor %}
-      Email Address: <input type="text" name="email" placeholder="{{ user.email }}" size="50" />
-         <br />
-     <input type="submit" name="submit" value="update" /><br />
-   <a href ="/zombie_search/change_password">Change password</a>
+      Email Address:
+      <!--I have chosen to keep the placeholder attribute in here even though it is not valid in XHTML strict...-->
+      <input type="text" name="email" placeholder="{{ user.email }}" size="50" />
+      <br />
+      <input type="submit" name="submit" value="update" /><br />
+      <a href ="{% url 'change_password' %}">Change password</a>
+    </p>
   </form>
+</div>
 {% endblock %}

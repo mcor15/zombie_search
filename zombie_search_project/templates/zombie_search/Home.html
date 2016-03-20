@@ -12,7 +12,7 @@
 		</tr>
 		{% for player in top_ten %}
 			<tr>
-			<td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
+			<td><a href= "{% url 'profile' player.slug %}">{{ player.user.username }}</a></td>
 			<td>{{ player.most_kills }}</td>
 			</tr>
 		{% endfor %}
@@ -24,7 +24,7 @@
 		</tr>
 		{% for player in next_ten %}
 			<tr>
-			<td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
+			<td><a href= "{% url 'profile' player.slug %}">{{ player.user.username }}</a></td>
 			<td>{{ player.most_kills }}</td>
 			</tr>
 		{% endfor %}

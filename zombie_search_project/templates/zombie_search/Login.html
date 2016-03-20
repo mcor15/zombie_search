@@ -13,13 +13,15 @@
 {% endif %}
 <br />
     <form id="login_form" method="post" action="/zombie_search/login/">
+      <p>
         {% csrf_token %}
          Username: <input type="text" name="username" value="" size="50" />
         <br />
         Password: <input type="password" name="password" value="" size="50" />
         <br />
         <input type="submit" value="submit" />
+      </p>
     </form>
 
-    <a href="/zombie_search/reset">Forgot your password?</a>
+    <small><strong><a href="{% url 'reset' %}">Forgot your password?</a></strong></small>
 {% endblock %}

@@ -6,6 +6,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(label = "Password", widget=forms.PasswordInput())
     confirm = forms.CharField(label = "Confirm Password", widget=forms.PasswordInput())
 
+    #ensure both passwrds have been added and are the same
     def clean_confirm(self):
         password = self.cleaned_data.get('password')
         confirm = self.cleaned_data.get('confirm')

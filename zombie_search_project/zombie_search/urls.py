@@ -16,7 +16,6 @@ urlpatterns = patterns('',
 	url(r'^login/$', views.player_login, name='login'),
 	url(r'^register/$', views.register, name='register'),
 	url(r'^logout/$', views.player_logout, name='logout'),
-    url(r'^reset/$', views.password_reset, name='reset'),
     url(r'^change_password/$', views.password_change ,name='change_password'),
     #password recory urls
     url(r'^reset/$', views.reset, name='reset'),

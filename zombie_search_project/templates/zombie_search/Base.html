@@ -21,10 +21,10 @@
 	<ul class="nav">
 		{% if user.is_authenticated %}
 			{% block profile_button %}<li><a href="/zombie_search/profile/{{ slug }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>{% endblock %}
-			<li><a href="/zombie_search/logout"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
+			<li><a href="{% url 'logout' %}"><button type="button" class="btn btn-default navbar-btn">Logout</button></a></li>
 		{% else %}
-			<li><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>
-			<li><a href="/zombie_search/register"><button type="button" class="btn btn-default navbar-btn">Sign Up</button></a></li>
+			<li><a href="{% url 'login' %}"><button type="button" class="btn btn-default navbar-btn">Login</button></a></li>
+			<li><a href="{% url 'register' %}"><button type="button" class="btn btn-default navbar-btn">Sign Up</button></a></li>
 		{% endif %}
 	</ul>
 
@@ -50,22 +50,23 @@
 </div>
 
 <div class="navbar navbar-fixed-bottom container">
-	<ul class="nav"id="sq">
-		<li><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
-		<li><a href="/zombie_search/about"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+	<ul id="sq">
+		<li><a href="{% url 'home' %}"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
+		<li><a href="{% url 'about' %}"><button type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
 		{% if user.is_authenticated %}
-			<li><a href="/zombie_search/play"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+			<li><a href="{% url 'splash_screen' %}"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% else %}
-			<li><a href="/zombie_search/login"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
+			<li><a id="please_login"><button type="button" class="btn btn-default navbar-btn">Play!</button></a></li>
 		{% endif %}
 	</ul>
 
 </div>
 <!--Ajax-->
 <!-- JQuery -->
-<script type = "text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<script type = "text/javascript" src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+<script src="{% static 'js/zombie-jquery.js' %}"></script>
 
 </body>
 </html>

@@ -4,6 +4,9 @@ body {
 	overflow: auto;
 }
 
+/**
+	for leaderboard on homepage
+**/
 .table {
 	display:table;
 	margin: auto;
@@ -16,16 +19,9 @@ body {
 	font-size: 75%;
 }
 
-#pills {
-	width: 100%;
-	text-align: center;
-}
-
-#pills li {
-	display: inline-block;
-	float: none;
-	}
-
+/**
+	for top navbar
+**/
 #sq {
 		width: 100%;
 		text-align: center;
@@ -36,8 +32,13 @@ body {
 #sq li {
 		display: inline-block;
 		float: none;
+		padding-left: 12px;
+		padding-right: 12px;
 		}
 
+/**
+	main body div
+**/
 #main{
 	background-color: #f2f2f2;
 	font-family: "arial";
@@ -60,6 +61,9 @@ body {
 	margin: 0px;
 	}
 
+/**
+	player stats on left of player profile page
+**/
 #player_stats{
 	width: 20%;
 	height: 90%;
@@ -69,6 +73,9 @@ body {
 	font-size: 75%;
 	}
 
+/**
+	profile picture has a set size
+**/
 #player_stats img{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -76,11 +83,17 @@ body {
 	height: 150px;
 	}
 
+/**
+	list of player details
+**/
 #player_stats li{
 	list-style: none;
 	text-align: left;
 	}
 
+/**
+	div that contains player trophies
+**/
 #trophy{
 	background-color: white;
 	margin-top: 20px;
@@ -96,31 +109,42 @@ body {
 	border-width: 1px;
 	}
 
-#badge{
-	display: inline-block;
-	padding: 15px;
-	height: 160px;
-	width: 160px;
-	}
-
-#badge li{
-	list-style: none;
-	margin-bottom: 10px;
-	font-size: 50%;
-	}
-
 #trophy h1{
 	border-bottom: solid black;
 	border-width: 1px;
 	}
 
-#trophy img{
-	display: inline;
-	height: 160px;
-	width: 160px;
-	font-size:50%;
+/**
+	trophies go in a smaller div in the trophy div
+**/
+#badge{
+	display: inline-block;
+	padding: 15px;
+	padding: 50px;
 	}
 
+/**
+	make sure trophies have uniform size
+**/
+#badge img{
+	height: 160px;
+	width: 160px;
+}
+
+/**
+	each trophy is a li element
+**/
+#badge ul{
+	display: inline-block;
+	list-style: none;
+	font-size: 50%;
+	width: 160px;
+	}
+
+/**
+	main div is bigger in game as there are no navbars at top and bottom
+	has no header, but does have whitespace at bottom for buttons and text
+**/
 #game{
 	background-color: #f2f2f2;
 	font-family: "arial";
@@ -134,28 +158,40 @@ body {
 	border-radius: 25px;
 	}
 
+/**
+	make sure the game picture fits the div but also eaves room for buttons
+	...yes, this makes some pictures look stretched :(
+**/
 #game img{
 	width: 100%;
 	height: 90%;
 	border-radius: 25px 25px 0px 0px;
 	}
 
+/**
+	div for game stats shown in top left corner (food, time left etc...)
+**/
 #game_stats{
-    width: 20%;
+  width: 20%;
 	position: absolute;
 	left: 10px;
 	top: 10px;
 	background-color: white;
 	border-radius: 25px;
 	}
-
+/**
+	style for list of game stats
+**/
 #game_stats li{
-    text-align: right;
+  text-align: right;
 	list-style: none;
 	margin: 5px;
 	font-size: 85%;
 	}
 
+/**
+	splash screen div is very similar to game main div but the picture takes up the whole div
+**/
 #splash {
 	font-family: "arial";
 	position: absolute;
@@ -168,30 +204,26 @@ body {
 	border-radius: 25px;
 	}
 
+/**
+	make sure the picture is the right size,
+	pretend it's not stretched at all
+	shhh... no one notices
+**/
 #splash img{
 	width: 100%;
 	height: 100%;
 	border-radius: 25px;
 	}
 
-#manage{
-	background-color: #f2f2f2;
-	font-family: "arial";
-	position: absolute;
-	left: 5px;
-	right: 5px;
-	bottom: 5px;
-	top: 5px;
+/**
+	for splash screen buttons
+**/
+#pills {
+	width: 100%;
 	text-align: center;
-	font-size: 150%;
-	border-radius: 25px;
-	overflow: auto;
-}
+	}
 
-#manage h1{
-	background-color: white;
-	border-radius: 25px 25px 0px 0px;
-	text-align: center;
-	padding: 0px;
-	margin: 0px;
-}
+#pills li {
+	display: inline-block;
+	float: none;
+		}

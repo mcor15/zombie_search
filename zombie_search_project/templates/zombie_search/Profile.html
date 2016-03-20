@@ -9,9 +9,9 @@
 
 {% block profile_button %}
 	{% if u %}
-		<li><a href="/zombie_search/update"><button type="button" class="btn btn-default navbar-btn">Edit Account Details</button></a></li>
+		<li><a href="{% url 'update' %}"><button type="button" class="btn btn-default navbar-btn">Edit Account Details</button></a></li>
 	{% else %}
-		<li><a href="/zombie_search/profile/{{ slug }}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>
+		<li><a href="{% url 'profile' slug %}"><button type="button" class="btn btn-default navbar-btn">Your Profile</button></a></li>
 	{% endif %}
 {% endblock %}
 
@@ -30,31 +30,38 @@
 			<li style="margin-top:10px"><strong>Games Played:</strong>{{ player.games_played }}</li>
 			<li style="margin-top:10px"><strong>Largest Party Size:</strong>{{ player.most_people }}</li>
 			<li style="margin-top:10px"><strong>Days Survived:</strong></li>
-			<ul>
-				<li><strong>Total:</strong>{{ player.total_days }}</li>
-				<li><strong>Best:</strong>{{ player.most_days_survived }}</li>
-				<li><strong>Average:</strong>{{ player.avg_days }}</li>
-			</ul>
+			<li>
+				<ul>
+					<li><strong>Total:</strong>{{ player.total_days }}</li>
+					<li><strong>Best:</strong>{{ player.most_days_survived }}</li>
+					<li><strong>Average:</strong>{{ player.avg_days }}</li>
+				</ul>
+			</li>
 			<li style="margin-top:10px"><strong>Kills:</strong></li>
-			<ul>
-				<li><strong>Total:</strong>{{ player.total_kills }}</li>
-				<li><strong>Best:</strong>{{ player.most_kills }}</li>
-			</ul>
+			<li>
+				<ul>
+					<li><strong>Total:</strong>{{ player.total_kills }}</li>
+					<li><strong>Best:</strong>{{ player.most_kills }}</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
 
 	<div id="trophy">
 		<h1>Trophy Cabinet</h1>
 
+		<div id="badge">
 		{% for a in achievements %}
-			<div id="badge">
+			<ul>
 				<li><strong>{{ a.badge }}</strong></li>
 				<li><img src="{{ a.badge.icon }}" alt="{{ a.badge }} trophy" /></li>
-				<li><strong>{{ a.date_awarded }}</strong>
+				<li><strong>{{ a.date_awarded }}</strong></li>
 				<li>{{ a.badge.description }}</li>
-			</div>
+			</ul>
 		{% endfor %}
+		</div>
 	</div>
 {% else %}
-	<strong style="float: center; font-size=200%"><br /> <br />No user found! Please try again...</strong>
+	<strong style="float: center; font-size=200%"><br /> <br />No user found with username {{ username }}! Please try again...</strong>
 {% endif %}
 {% endblock %}
