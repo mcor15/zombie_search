@@ -8,8 +8,9 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import password_reset, password_reset_confirm
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
-from zombie_search.forms import UserForm, PlayerForm, UpdateUser
+#from zombie_search.forms import UserForm, PlayerForm
 import copy
 from game import Game
 from django.core.mail import send_mail
@@ -257,3 +258,12 @@ def game(request, houseNumber, roomNumber, action):
 def player_logout(request):
     logout(request)
     return HttpResponseRedirect('/zombie_search/')
+
+
+def reset_confirm(request, uidb64=None, token=None):
+    return password_reset_confirm(request,
+                                    uidb64=uidb64, token=token,
+                                    post_reset_redirect=reverse('login'))
+
+def reset(request):
+    return password_reset(request, post_reset_redirect=reverse('login'))

@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 from zombie_search import views
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import password_reset
 
 urlpatterns = patterns('',
     url(r'^$', views.total_kills, name='home'),
@@ -17,4 +18,8 @@ urlpatterns = patterns('',
 	url(r'^logout/$', views.player_logout, name='logout'),
     url(r'^reset/$', views.password_reset, name='reset'),
     url(r'^change_password/$', views.password_change ,name='change_password'),
+    #password recory urls
+    url(r'^reset/$', views.reset, name='reset'),
+    url(r'^reset/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', views.reset_confirm, name='password_reset_confirm'),
+    url(r'^reset/sent/$', auth_views.password_reset_done, name='password_reset_done'),
 	)
