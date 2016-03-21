@@ -249,7 +249,7 @@ def register(request):
         user_form = UserForm()
         player_form = PlayerForm()
 
-    context_dict = {'user_form': user_form, 'player_form': player_form, 'registered': registered}
+    context_dict = {'user_form': user_form, 'player_form': player_form, 'registered': registered, 'slug': get_user_slug(request)}
 
     return render(request,'zombie_search/register.html', context_dict )
 
@@ -338,11 +338,11 @@ def reset_confirm(request, uidb64=None, token=None):
     return password_reset_confirm(request,
                                     uidb64=uidb64, token=token,
                                     post_reset_redirect=reverse('login'))
+
 #implements Djangos built-in password recovery view
 def reset(request):
     return password_reset(request, post_reset_redirect=reverse('login'))
 
+
 def handler404(request):
-    response = render(request, '/zombie_search/404.html',{})
-    response.status_code = 404
-    return response
+    return render(request, 'zombie_search/404.html')

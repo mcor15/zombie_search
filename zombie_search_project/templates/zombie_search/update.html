@@ -11,6 +11,7 @@
 <div>
   <form id="user_form" method="post" action="/zombie_search/update/" enctype="multipart/form-data" style="font-size:50%;">
     <p>
+      {% csrf_token %}
      {% for field in player_form %}
         Profile Picture:
         {{ field }}<br />

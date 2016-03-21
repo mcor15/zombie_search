@@ -1,5 +1,6 @@
 
 
+
 {% block results %}
 		<div class="navbar navbar-fixed-bottom container">
 			<ul id='controls'>
@@ -15,7 +16,7 @@
 						</div>
           {% endif %}
                     {% if game_state == "HOUSE" %}
-						<div class="dropup" style="position: relative; top: 10px">
+						<div class="dropup">
 							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret">
 								</span>
 							</button>
@@ -62,7 +63,7 @@
 
         <li>
 					<a>
-						<button id ="ingame_about" type="button" class="btn btn-default navbar-btn">
+						<button id ="open_dialog" type="button" class="btn btn-default navbar-btn">
 							Instructions
 						</button>
 					</a>

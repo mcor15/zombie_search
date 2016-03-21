@@ -11,8 +11,6 @@ $(document).ready(function() {
 
 });
 
-
-
 function gethtml(){
     $.get('/zombie_search/game/', {"action":parameters[0],
                                             "houseNumber":parameters[1],
@@ -34,6 +32,7 @@ function gethtml(){
             height: 250
         });
 }
+
 function setupList(){
     $('li').on('click',function(){
         var my_var ;
@@ -43,6 +42,17 @@ function setupList(){
             gethtml();
           }
 
+    });
+    $(function () {
+      $( "#dialog" ).dialog({
+        autoOpen: false,
+      width: 500,
+      height: 250
+      });
+
+      $("#ingame_about").click(function() {
+        $("#dialog").dialog('open');
+      });
     });
 
 }

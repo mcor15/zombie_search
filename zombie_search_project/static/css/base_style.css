@@ -19,6 +19,11 @@ body {
 	font-size: 75%;
 }
 
+#dropup{
+	position: relative;
+	top: 10px
+}
+
 /**
 	for top navbar
 **/
@@ -164,7 +169,7 @@ body {
 **/
 #picture{
 	width: 100%;
-	height: 90%;
+	height: 85%;
 	border-radius: 25px 25px 0px 0px;
 	}
 
