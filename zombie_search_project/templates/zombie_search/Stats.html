@@ -1,0 +1,14 @@
+	{% block stats %}
+		<ul style="float: left; margin-top: 10px">
+			<li role="presentation"><a href="/zombie_search/"><button type="button" class="btn btn-default navbar-btn">Home</button></a></li>
+			<li role="presentation"><a href=""><button type="button" class="btn btn-default navbar-btn">Save</button></a></li>
+		</ul>
+		<ul>
+			<li><strong>Party Size:{{ Party_Size }}</strong></li>
+			<li><strong>Ammo:{{ Ammo }}</strong></li>
+			<li><strong>Food:{{ Food }}</strong></li>
+			<li><strong>Day:{{ Day }}</strong></li>
+			<li><strong>Zombies Killed:{{ Killed }}</strong></li>
+			<li><strong>Time Left in Day:{{ Time }}</strong></li>
+		</ul>
+	{% endblock %}

@@ -6,7 +6,7 @@ from django.contrib.auth.views import password_reset
 urlpatterns = patterns('',
     url(r'^$', views.init_leaderboard, name='home'),
     url(r'^play/$', views.splash, name='splash_screen'),
-	url(r'^game/(?P<houseNumber>[\w\-]+)/(?P<roomNumber>[\w\-]+)/(?P<action>[\w\-]+)/$', views.game, name='game'),
+	url(r'^game/$', views.game, name='game'),
     url(r'^profile/(?P<user_slug>[\w\-]+)/$', views.profile, name ='profile'),
 	url(r'^update/', views.update, name='update'),
 	url(r'^about/$', views.about, name='about'),

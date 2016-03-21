@@ -1,0 +1,17 @@
+	{% block image %}
+        {% load static %}
+        {% if game_state == "ZOMBIE" %}
+        	<img src = "{% static 'img/zombie.jpg' %}" alt="street" />
+        {% endif %}
+        {% if game_state == "HOUSE" %}
+            {% if visited_room == False %}
+        	<img src = "{% static 'img/house.jpg' %}" alt="street" />
+            {% endif %}
+            {% if visited_room == True %}
+        	<img src = "{% static 'img/searched1.jpg' %}" alt="street" />
+            {% endif %}
+        {% endif %}
+        {% if game_state == "STREET" %}
+	        <img src = "{% static 'img/street.jpg' %}" alt="street" />
+        {% endif %}
+	{% endblock %}

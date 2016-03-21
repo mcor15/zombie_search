@@ -1,6 +1,6 @@
 import random
 from django import forms
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from zombie_search.models import Player, Achievement, Badge
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
@@ -272,75 +272,72 @@ def register(request):
 #game splash-screen: load game and start new game
 @login_required
 def splash(request):
-    return render(request, 'zombie_search/splash.html')
-
-@login_required
-def game(request, houseNumber, roomNumber, action):
+    print "bsd"
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
-    if(action!="NEW"):
-        g.player_state=copy.deepcopy(p.player_state)
-        g.update_state=copy.deepcopy(p.update_state)
-        g.game_state=copy.deepcopy(p.game_state)
-        g.street=copy.deepcopy(p.street)
-        g._time_left=copy.deepcopy(p._time_left)
+    return render(request, 'zombie_search/splash.html',{"existing_game": not g.is_game_over()})
+
+@login_required
+def game(request):
+    if not request.is_ajax():
+        if "action" in request.GET:
+            p=Player.objects.get_or_create(user=request.user)[0]
+            g=Game()
+            g.start_new_day()
+            p.update_game(g.player_state,g.street,g.update_state,g.game_state,g._time_left)
+        return render(request, 'zombie_search/In_Game.html' )
+
+    if "action" in request.GET:
+        action=request.GET["action"]
     else:
+        action="PASS"
+
+    p=Player.objects.get_or_create(user=request.user)[0]
+    g = Game()
+    if action=="NEW":
         g.start_new_day()
-    visited_room=g.street.get_current_house().room_list[int(roomNumber)].visited
-
-    if(g.game_state=="STREET"):
-        if(action=="MOVE"):
-            g.take_turn(action,int(houseNumber))
-        if(action=="ENTER"):
-            g.take_turn(action)
-    elif g.game_state=="HOUSE":
-        if(action=="SEARCH"):
-            g.take_turn(action, int(roomNumber))
-        if(action=="EXIT"):
-            g.take_turn(action)
     else:
-        g.take_turn(action)
+        g.load(p.player_state,p.update_state,p.game_state,p.street,p._time_left)
+    if "houseNumber" in request.GET:
+        houseNumber=request.GET["houseNumber"]
+    else:
+        houseNumber=p.street.current_house
+    if "roomNumber" in request.GET:
+        roomNumber=request.GET["roomNumber"]
+    else:
+        roomNumber=p.street.get_current_house().current_room
     if g.is_game_over():
-        p.total_days+=g.player_state.days
-        p.games_played+=1
-        p.total_kills+=g.player_state.kills
-        p.avg_days=(p.avg_days*float(p.games_played)+float(g.player_state.days))/float(p.games_played)
-        if p.most_days_survived < g.player_state.days:
-            p.most_days_survived = g.player_state.days
-        if p.most_kills < g.player_state.kills:
-            p.most_kills = g.player_state.kills
-        if p.most_people < g.player_state.party:
-            p.most_people = g.player_state.party
 
-    elif(g.is_day_over()):
+        p.game_over_update(days=g.player_state.days,kills=g.player_state.kills,party=g.player_state.party)
+        return redirect('/zombie_search/play')
+    visited_room=g.street.get_current_house().room_list[int(roomNumber)].visited
+    g.process_turn(action,int(houseNumber),int(roomNumber))
+
+    if g.is_day_over():
         g.end_day()
         g.start_new_day()
-    p.player_state=g.player_state
-    p.street=g.street
-    p.update_state=g.update_state
-    p.game_state=g.game_state
-    p._time_left=g._time_left
-    p.save()
-    context_dict={'slug':get_user_slug(request),
-                  'Ammo':p.player_state.ammo,
-                  'Food':p.player_state.food,
-                  'Party_Size':p.player_state.party,
-                  'houses':p.street.house_list,
-                  'num_of_houses':range(0,p.street.num_of_houses),
-                  'num_of_rooms':range(0,len(g.street.get_current_house().room_list)),
-                  'currentHouse':houseNumber,
-                  'Day':p.player_state.days,
-                  'Time':g.time_left,
-                  'Killed':g.player_state.kills,
-                  'visited_room':visited_room,
-                  'roomNumber':roomNumber,
-                  'game_state':g.game_state,
-                  'update_state':g.update_state,
-                  'room_list':g.street.get_current_house().room_list,
+    p.update_game(g.player_state,g.street,g.update_state,g.game_state,g._time_left)
 
-                  }
+    context = {'num_of_houses': range(0,p.street.num_of_houses),
+               'room_list':g.street.get_current_house().room_list,
+               'roomNumber':roomNumber,
+               'currentHouse':houseNumber,
+               'game_state':g.game_state}
 
-    return render(request, 'zombie_search/In_Game.html',context_dict )
+    return_str=[]
+    return_str.append(render_block_to_string('zombie_search/toRender.html', 'results', context))
+    return_str.append(render_block_to_string('zombie_search/update_state.html', 'update_state', {'update_state': g.update_state}))
+    return_str.append(render_block_to_string('zombie_search/stats.html', 'stats', {       'Ammo':p.player_state.ammo,
+                                                                                                 'Food':p.player_state.food,
+                                                                                                 'Party_Size':p.player_state.party,
+                                                                                                 'Day':p.player_state.days,
+                                                                                                 'Time':g.time_left,
+                                                                                                 'Killed':g.player_state.kills,
+                                                                                                 }))
+    return_str.append(render_block_to_string('zombie_search/img.html', 'image', {'game_state': g.game_state,
+                                                                                    'visited_room':visited_room,
+                                                                                    }))
+    return HttpResponse(json.dumps(return_str), content_type='application/json')
 
 @login_required
 def player_logout(request):

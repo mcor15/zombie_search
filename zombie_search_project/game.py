@@ -17,6 +17,7 @@ LENGTH_OF_DAY = 100
 
 class PlayerState(object):
 
+
     def __init__(self):
         self.party = 1
         self.ammo = 2
@@ -53,6 +54,27 @@ ACTIONS = {
     }
 
 class Game(object):
+    def process_turn(self, action, house_number, room_number):
+        if(self.game_state=="STREET"):
+            if(action=="MOVE"):
+                self.take_turn(action,house_number)
+            else:
+                self.take_turn(action)
+        elif self.game_state=="HOUSE":
+            if(action=="SEARCH"):
+                self.take_turn(action, room_number)
+            else:
+                self.take_turn(action)
+        else:
+            self.take_turn(action)
+
+
+    def load(self,player_state,update_state,game_state,street,_time_left):
+        self.player_state=player_state
+        self.update_state=update_state
+        self.game_state=game_state
+        self.street=street
+        self._time_left=_time_left
 
     def __init__(self):
         self.update_state = PlayerState()
