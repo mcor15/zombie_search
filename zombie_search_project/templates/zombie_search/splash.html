@@ -33,7 +33,11 @@ Plan your moves carefully, as each action takes up time within the day! The game
 </p>
 </div>
 
-	<img src="{% static 'img/Splash.jpg' %}" />
+    {% if existing_game%}
+        	<img src="{% static 'img/Splash.jpg' %}" />
+    {% else %}
+        	<img src="{% static 'img/gameOver.jpg' %}" />
+    {% endif %}
 	<nav class ="navbar navbar-fixed-top">
 	<ul class="nav nav-pills" id="pills">
 		<li><a href="{% url 'zombie_search.views.game' %}?action=NEW&roomNumber=0&houseNumber=0"><button type="button" class="btn btn-default navbar-btn">New Game</button></a></li>
@@ -47,6 +51,13 @@ Plan your moves carefully, as each action takes up time within the day! The game
 	</ul>
 	
 	</nav>
+{% if existing_game %}
+{% else %}
+<div>
+    You managed to survive {{ Day }} and took down {{ Kills }} zombies with you!
+</div>
+{% endif %}
+
 </div>
 </body>
 	

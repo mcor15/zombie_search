@@ -154,7 +154,7 @@ def update(request):
             user.email = email
             user.save()
 
-        #redirect user to their profile
+        # user to their profile
         return profile(request, get_user_slug(request))
 
     #if it's a GET request, show the PlayerForm
@@ -256,10 +256,13 @@ def register(request):
 #game splash-screen: load game and start new game
 @login_required
 def splash(request):
-    print "bsd"
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
-    return render(request, 'zombie_search/splash.html',{"existing_game": not g.is_game_over()})
+    g.load(p.player_state,p.update_state,p.game_state,p.street,p._time_left)
+    print g.is_game_over()
+    return render(request, 'zombie_search/splash.html',{"Existing_game": not g.is_game_over(),
+                                                        "Kills":g.player_state.kills,
+                                                        'Day':g.player_state.days,})
 
 @login_required
 def game(request):
@@ -293,8 +296,8 @@ def game(request):
     else:
         roomNumber=p.street.get_current_house().current_room
     if g.is_game_over():
-
         p.game_over_update(days=g.player_state.days,kills=g.player_state.kills,party=g.player_state.party)
+        p.update_game(g.player_state,g.street,g.update_state,g.game_state,g._time_left)
         return redirect('/zombie_search/play')
     visited_room=g.street.get_current_house().room_list[int(roomNumber)].visited
     g.process_turn(action,int(houseNumber),int(roomNumber))

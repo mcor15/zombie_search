@@ -14,16 +14,7 @@
 							</ul>
 						</div>
           {% endif %}
-
-					{% if game_state == "ZOMBIE" %}
-							<button id="FIGHT/{{ currentHouse }}/{{ roomNumber }}" type="button" class="btn btn-default navbar-btn" >Fight</button></li>
-          {% endif %}
-
-					{% if game_state == "ZOMBIE" %}
-            <button id="RUN/{{ currentHouse }}/{{ roomNumber }}" type="button" class="btn btn-default navbar-btn" >Run</button></li>
-          {% endif %}
-
-					{% if game_state == "HOUSE" %}
+                    {% if game_state == "HOUSE" %}
 						<div class="dropup" style="position: relative; top: 10px">
 							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret">
 								</span>
@@ -37,6 +28,15 @@
 								</ul>
 							</div>
           {% endif %}
+					{% if game_state == "ZOMBIE" %}
+							<li id="FIGHT/{{ currentHouse }}/{{ roomNumber }}"><button  type="button" class="btn btn-default navbar-btn" >Fight</button></li>
+          {% endif %}
+
+					{% if game_state == "ZOMBIE" %}
+            <li id="RUN/{{ currentHouse }}/{{ roomNumber }}"><button type="button" class="btn btn-default navbar-btn" >Run</button></li>
+          {% endif %}
+
+
 				</li>
 
 				<li id="WAIT/{{ currentHouse }}/{{ roomNumber }}">
