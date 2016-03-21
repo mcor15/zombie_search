@@ -279,8 +279,10 @@ def splash(request):
 
 @login_required
 def game(request):
+    print "called"
     if not request.is_ajax():
         if "action" in request.GET:
+            print "not jax"
             p=Player.objects.get_or_create(user=request.user)[0]
             g=Game()
             g.start_new_day()

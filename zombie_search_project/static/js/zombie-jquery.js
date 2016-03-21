@@ -5,10 +5,6 @@ $(document).ready(function(){
 	height: 250
   });
 
-  $("#ingame_about").click(function() {
-    $("#dialog").dialog('open');
-  });
-
 $("#please_login").click(function(){
     alert("you must be logged in to play zombie_search!");
   });
