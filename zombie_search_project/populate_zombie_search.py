@@ -1,4 +1,4 @@
-#Vr.3 Matthew
+
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'zombie_search_project.settings')
 
@@ -15,12 +15,12 @@ from game import Game
 from streetfactory import StreetFactory
 from game import PlayerState
 
-#28 users
-users = ["jill", "jim","joe","left4dead","zombie_game_king","youtube-gamer","@ttackOnTitan",
-"C++","this.toString","TyreeseWilliams","SashaWilliams","ShaneWalsh",
-"BobStookey","GabrielStokes","Bill","Francis", "Louis", "Zoey", "Coach",
- "Ellis", "Nick","Rochelle","ChrisRedfield", "JillValentine",
-  "MarcusCampbell","EdJones","MayaTorres","MarcusGormley"]
+#30 users
+users = ["jill", "jim","joe","bob","jen","left4dead","zombie_game_king",
+"youtube-gamer","@ttackOnTitan","C++","this.toString","TyreeseWilliams",
+"SashaWilliams","ShaneWalsh","BobStookey","GabrielStokes","Bill","Francis",
+"Louis", "Zoey", "Coach","Ellis", "Nick","Rochelle","ChrisRedfield",
+"JillValentine","MarcusCampbell","EdJones","MayaTorres","MarcusGormley"]
 
 badges = {"Killer":{0:"You have not earned the achievement yet.",
                     10:"You have killed 10 zombies.",

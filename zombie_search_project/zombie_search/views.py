@@ -13,8 +13,41 @@ from django.template import RequestContext
 from zombie_search.forms import UpdateUser, UserForm, PlayerForm
 #from zombie_search.forms import UserForm, PlayerForm
 import copy
+import json
 from game import Game
 from django.core.mail import send_mail
+from script942 import render_block_to_string
+
+
+#**********************************
+def init_leaderboard(request):
+    return render(request,'zombie_search/base_home.html')
+def init_board(request):
+    types=['total_kills','total_days']
+
+    html = total_kills(request)
+    #packet = {'html':html}
+    #html= html[38:]
+    #print "==========>"+str(html)
+    #return HttpResponse(packet)
+    return HttpResponse(html)
+def update_board(request):
+    types=['Total Kills','Total Days',"Most Kills"]
+    board= int(request.GET['current'])
+    print board
+    if board == 0:
+        html = total_kills(request)
+    elif board == 1:
+        html = total_days(request)
+    elif board == 2:
+        html = most_kills(request)
+    html = str(html)
+    #print html
+    #html= html[38:]
+    #print html
+    stuff = {"stat":types[board],"html":html}
+    return HttpResponse(json.dumps(stuff))
+#***************************************
 
 #helper class to get the slug associated with the currently logged in user
 def get_user_slug(request):
@@ -31,36 +64,55 @@ def decode_url(str):
     str = str.replace('_', ' ')
     return str.title()
 
-def get_leaderboard(request, OrderBy, left, right):
+def get_leaderboard(OrderBy):#not needed
 
-    top_ten = Player.objects.order_by(OrderBy).reverse()[:10]
-    next_ten = Player.objects.order_by(OrderBy).reverse()[10:20]
-
-    context_dict = {'top_ten': top_ten,
-					'next_ten': next_ten,
-					'lefturl':left,
-					'righturl':right,
-					'this': decode_url(OrderBy),
-                    'slug': get_user_slug(request)
-					}
-
-    return context_dict
+    players = Player.objects.order_by(OrderBy).reverse()[:20]
+    return players
 
 def total_kills(request):
-    context_dict = get_leaderboard(request, 'total_kills',"avg_days", "most_kills")
-    return render(request, 'zombie_search/Home.html', context_dict)
+
+    players = get_leaderboard('total_kills')
+
+    scores = []
+    for player in players:
+        scores += [player.total_kills]
+
+    leaderboard = zip(players, scores)
+    context_dict = { 'top_ten': leaderboard[:10],
+                    'next_ten':leaderboard[10:],
+                    'slug': get_user_slug(request)}
+    return render_block_to_string('zombie_search/render_players.html','whatever',context_dict)
 
 def most_kills(request):
-    context_dict = get_leaderboard(request, 'most_kills',"", "total_days")
-    return render(request, 'zombie_search/Home.html', context_dict)
+
+    players = get_leaderboard('most_kills')
+
+    scores = []
+    for player in players:
+        scores += [player.most_kills]
+
+    leaderboard = zip(players, scores)
+    context_dict = { 'top_ten': leaderboard[:10],
+                    'next_ten':leaderboard[10:],
+                    'slug': get_user_slug(request)}
+    #return render(request, 'zombie_search/Home.html', context_dict)
+    return render_block_to_string('zombie_search/render_players.html','whatever',context_dict)
 
 def total_days(request):
-    context_dict = get_leaderboard(request, 'total_days',"most_kills", "avg_days")
-    return render(request, 'zombie_search/Home.html', context_dict)
 
-def avg_days(request):
-    context_dict = get_leaderboard(request, 'avg_days',"total_days", "")
-    return render(request, 'zombie_search/Home.html', context_dict)
+    players = get_leaderboard('total_days')
+
+    scores = []
+    for player in players:
+        scores += [player.total_days]
+
+    leaderboard = zip(players, scores)
+    context_dict = { 'top_ten': leaderboard[:10],
+                    'next_ten':leaderboard[10:],
+                    'slug': get_user_slug(request)}
+    #return render(request, 'zombie_search/Home.html', context_dict)
+    return render_block_to_string('zombie_search/render_players.html','whatever',context_dict)
+
 
 #game instructions
 def about(request):

@@ -1,0 +1,28 @@
+{% block whatever %}
+  <table class = "table table-striped">
+    <tr>
+    <th>Username</th>
+    <th>Score</th>
+    </tr>
+    {% for player, score in top_ten %}
+      <tr>
+
+    <td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
+      <td>{{ score }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <table class="table table-striped">
+    <tr>
+    <th>Username</th>
+    <th>Score</th>
+    </tr>
+    {% for player, score in next_ten %}
+      <tr>
+      <td><a href= "/zombie_search/profile/{{ player.slug }}">{{ player.user.username }}</a></td>
+      <td>{{ score }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
