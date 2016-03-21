@@ -4,6 +4,7 @@ $(document).ready(function() {
         document.getElementById("update_state").innerHTML = data[1];
         document.getElementById("stats").innerHTML = data[2];
         document.getElementById("picture").innerHTML = data[3];
+        document.getElementById("update_state").innerHTML += data[4];
         setupList();
 
 
@@ -15,11 +16,13 @@ function gethtml(){
     $.get('/zombie_search/game/', {"action":parameters[0],
                                             "houseNumber":parameters[1],
                                             "roomNumber":parameters[2]}, function(data){
-                        if(data.length==4) {
+                        alert(data.length)
+                        if(data.length==5) {
                             document.getElementById("posthere").innerHTML = data[0];
-                            document.getElementById("stats").innerHTML = data[2];
-                            document.getElementById("picture").innerHTML = data[3];
                             document.getElementById("update_state").innerHTML = data[1];
+                            document.getElementById("stats").innerHTML = data[2];
+                            document.getElementById("update_state").innerHTML += data[4];
+                            document.getElementById("picture").innerHTML = data[3];
                             setupList();
                         }
                         else{

@@ -19,7 +19,7 @@ from django.core.mail import send_mail
 from django.forms.models import model_to_dict
 #credit
 from script942 import render_block_to_string
-
+import os.path
 
 #**********************************
 def init_leaderboard(request):
@@ -259,17 +259,14 @@ def splash(request):
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
     g.load(p.player_state,p.update_state,p.game_state,p.street,p._time_left)
-    print g.is_game_over()
     return render(request, 'zombie_search/splash.html',{"Existing_game": not g.is_game_over(),
                                                         "Kills":g.player_state.kills,
                                                         'Day':g.player_state.days,})
 
 @login_required
 def game(request):
-    print "called"
     if not request.is_ajax():
         if "action" in request.GET:
-            print "not jax"
             p=Player.objects.get_or_create(user=request.user)[0]
             g=Game()
             g.start_new_day()
@@ -323,9 +320,32 @@ def game(request):
                                                                                                  'Time':g.time_left,
                                                                                                  'Killed':g.player_state.kills,
                                                                                                  }))
+    if g.game_state == "STREET":
+        path = "static/img/street"
+        num_files = sum(os.path.isfile(os.path.join(path, f)) for f in os.listdir(path))
+    if g.game_state == "HOUSE":
+        if visited_room == False:
+            path = "static/img/house"
+        else:
+            path = "static/img/searched_rooms"
+        num_files = sum(os.path.isfile(os.path.join(path, f)) for f in os.listdir(path))
+    if g.game_state == "ZOMBIE":
+        path = "static/img/zombie"
+        num_files = sum(os.path.isfile(os.path.join(path, f)) for f in os.listdir(path))
+
+    i = str(random.randint(1, num_files))
     return_str.append(render_block_to_string('zombie_search/img.html', 'image', {'game_state': g.game_state,
-                                                                                    'visited_room':visited_room,
-                                                                                    }))
+                                                                                    'visited_room':visited_room,'number':i,
+                                                                                }))
+
+
+    return_str.append(render_block_to_string('zombie_search/info.html', 'info',{
+        'game_state':p.game_state,
+        'num_of_rooms':len(p.street.get_current_house().room_list),
+        'num_of_houses':p.street.num_of_houses,
+        'houseNumber':houseNumber,
+        'roomNumber':roomNumber,
+    }))
     return HttpResponse(json.dumps(return_str), content_type='application/json')
 
 @login_required
