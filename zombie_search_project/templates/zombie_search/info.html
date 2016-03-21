@@ -1,0 +1,11 @@
+	{% block info %}
+{% if game_state == "ZOMBIE" %}
+    You are facing zombies, you can either fight them or run away!
+        {%endif%}
+        {% if game_state == "STREET" %}
+            You are on a street. There are {{ num_of_houses }} houses on the street. You are in front of house number {{ currentHouse }}.
+        {%endif%}
+        {% if game_state == "HOUSE" %}
+            You are on a street. There are {{ num_of_rooms }} houses on the street. You are in front of house number {{ currentRoom }}.
+        {%endif%}
+	{% endblock %}

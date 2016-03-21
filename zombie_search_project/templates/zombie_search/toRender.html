@@ -21,7 +21,7 @@
 							</button>
 								<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
 						    	{% for i in room_list %}
-										<li id="SEARCH/{{ currentHouse }}/{{ i.room_number }}">
+										<li id="SEARCH/{{ currentHouse  }}/{{ i.room_number }}">
 											Room {{ i.room_number }}{% if i.visited %}Searched{% endif %}
 										</li>
 						    	{% endfor %}

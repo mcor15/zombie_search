@@ -259,17 +259,14 @@ def splash(request):
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
     g.load(p.player_state,p.update_state,p.game_state,p.street,p._time_left)
-    print g.is_game_over()
     return render(request, 'zombie_search/splash.html',{"Existing_game": not g.is_game_over(),
                                                         "Kills":g.player_state.kills,
                                                         'Day':g.player_state.days,})
 
 @login_required
 def game(request):
-    print "called"
     if not request.is_ajax():
         if "action" in request.GET:
-            print "not jax"
             p=Player.objects.get_or_create(user=request.user)[0]
             g=Game()
             g.start_new_day()
@@ -326,6 +323,14 @@ def game(request):
     return_str.append(render_block_to_string('zombie_search/img.html', 'image', {'game_state': g.game_state,
                                                                                     'visited_room':visited_room,
                                                                                     }))
+
+    return_str.append(render_block_to_string('zombie_search/info.html', 'info',{
+        'game_state':p.game_state,
+        'num_of_rooms':len(p.street.get_current_house().room_list),
+        'num_of_houses':p.street.num_of_houses,
+        'houseNumber':houseNumber,
+        'roomNumber':roomNumber,
+    }))
     return HttpResponse(json.dumps(return_str), content_type='application/json')
 
 @login_required
