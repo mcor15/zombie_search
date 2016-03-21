@@ -20,6 +20,6 @@ urlpatterns = patterns('',
     url(r'^reset/sent/$', auth_views.password_reset_done, name='password_reset_done'),
 
     url(r'^load_leaderboard/$', views.init_leaderboard, name='update_leaderboard'),
-    url(r'leader/$',views.init_board,name="home"),
-    url(r'render_players/$',views.update_board,name="home"),
+    url(r'leader/$',views.init_board,name="leader"),
+    url(r'render_players/$',views.update_board,name="render"),
 	)

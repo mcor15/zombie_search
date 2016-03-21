@@ -1,52 +1,72 @@
 
 
 {% block results %}
-	<nav class = "navbar navbar-fixed-bottom" >
-		<div class = "container fluid">
-			<ul class="nav nav-pills">
+		<div class="navbar navbar-fixed-bottom container">
+			<ul id='controls'>
 				<li>
-                    {% if game_state == "STREET" %}
-					<div class="dropup" style="position: relative; top: 10px">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Move to<span class="caret"></span></button>
-						<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
+          {% if game_state == "STREET" %}
+						<div class="dropup" style="position: relative; bottom: 5px">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Move to<span class="caret"></span></button>
+							<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
 						    {% for i in num_of_houses %}
-								<li id="MOVE/{{ i }}/0">House {{ i }}</li>
+									<li id="MOVE/{{ i }}/0">House {{ i }}</li>
 						    {% endfor %}
-						</ul>
-					</div>
-                    {% endif %}
-                    {% if game_state == "ZOMBIE" %}
-                        <li id="FIGHT/{{ currentHouse }}/{{ roomNumber }}"><button type="button" class="btn btn-default navbar-btn" >Fight</button></li>
-                    {% endif %}
-                    {% if game_state == "ZOMBIE" %}
-                        <li id="RUN/{{ currentHouse }}/{{ roomNumber }}"><button type="button" class="btn btn-default navbar-btn" >Run</button></li>
-                    {% endif %}
-                    {% if game_state == "HOUSE" %}
-					<div class="dropup" style="position: relative; top: 10px">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></button>
-						<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
-						    {% for i in room_list %}
-								<li id="SEARCH/{{ currentHouse }}/{{ i.room_number }}">
+							</ul>
+						</div>
+          {% endif %}
 
-                                    Room {{ i.room_number }}{% if i.visited %}Searched{% endif %}
+					{% if game_state == "ZOMBIE" %}
+							<button id="FIGHT/{{ currentHouse }}/{{ roomNumber }}" type="button" class="btn btn-default navbar-btn" >Fight</button></li>
+          {% endif %}
 
-                                </li>
-						    {% endfor %}
-						</ul>
-					</div>
-                    {% endif %}
+					{% if game_state == "ZOMBIE" %}
+            <button id="RUN/{{ currentHouse }}/{{ roomNumber }}" type="button" class="btn btn-default navbar-btn" >Run</button></li>
+          {% endif %}
 
+					{% if game_state == "HOUSE" %}
+						<div class="dropup" style="position: relative; top: 10px">
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search<span class="caret">
+								</span>
+							</button>
+								<ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu2">
+						    	{% for i in room_list %}
+										<li id="SEARCH/{{ currentHouse }}/{{ i.room_number }}">
+											Room {{ i.room_number }}{% if i.visited %}Searched{% endif %}
+										</li>
+						    	{% endfor %}
+								</ul>
+							</div>
+          {% endif %}
 				</li>
-				<li id="WAIT/{{ currentHouse }}/{{ roomNumber }}"><button type="button" class="btn btn-default navbar-btn">Wait</button></li>
-                {% if game_state == "HOUSE" %}
-                    <li id="EXIT/{{ currentHouse }}/{{ roomNumber }}"><button type="button" class="btn btn-default navbar-btn">Exit</button></li>
-                {% endif %}
-                {% if game_state == "STREET" %}
-				<li id="ENTER/{{ currentHouse }}/0"><button type="button" class="btn btn-default navbar-btn">ENTER</button></li>
+
+				<li id="WAIT/{{ currentHouse }}/{{ roomNumber }}">
+					<button type="button" class="btn btn-default navbar-btn">
+							Wait
+					</button>
+				</li>
+      	{% if game_state == "HOUSE" %}
+        	<li id="EXIT/{{ currentHouse }}/{{ roomNumber }}">
+						<button type="button" class="btn btn-default navbar-btn">
+							Exit
+						</button>
+					</li>
+        {% endif %}
+
+				{% if game_state == "STREET" %}
+					<li id="ENTER/{{ currentHouse }}/0">
+						<button type="button" class="btn btn-default navbar-btn">
+							ENTER
+						</button>
+					</li>
 				{% endif %}
-                <li><a><button id ="ingame_about" type="button" class="btn btn-default navbar-btn">Instructions</button></a></li>
+
+        <li>
+					<a>
+						<button id ="ingame_about" type="button" class="btn btn-default navbar-btn">
+							Instructions
+						</button>
+					</a>
+				</li>
 			</ul>
 		</div>
-	</nav>
 	{% endblock %}
-

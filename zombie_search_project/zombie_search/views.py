@@ -16,12 +16,14 @@ import copy
 import json
 from game import Game
 from django.core.mail import send_mail
+from django.forms.models import model_to_dict
+#credit
 from script942 import render_block_to_string
 
 
 #**********************************
 def init_leaderboard(request):
-    return render(request,'zombie_search/base_home.html')
+    return render(request,'zombie_search/base_home.html', get_leaderboard(request, 'total_kills' ))
 def init_board(request):
     types=['total_kills','total_days']
 
@@ -45,7 +47,7 @@ def update_board(request):
     #print html
     #html= html[38:]
     #print html
-    stuff = {"stat":types[board],"html":html}
+    stuff = {"stat":types[board],"html":html, 'slug': get_user_slug(request)}
     return HttpResponse(json.dumps(stuff))
 #***************************************
 
@@ -59,60 +61,42 @@ def get_user_slug(request):
         user_slug = None
     return user_slug
 
-#helper class to show leaderboard titles
-def decode_url(str):
-    str = str.replace('_', ' ')
-    return str.title()
+#helper class to build the context dictionary for the leaderboards
+def get_leaderboard(request, orderBy):
+    #get top top twenty players ordered by the given paramter
+    players = Player.objects.order_by(orderBy).reverse()[:20]
 
-def get_leaderboard(OrderBy):#not needed
-
-    players = Player.objects.order_by(OrderBy).reverse()[:20]
-    return players
-
-def total_kills(request):
-
-    players = get_leaderboard('total_kills')
+    top_twenty = {}
+    for player in players:
+        #get player model as a dictionary and add each player dictionary to a dictionary called top_twenty
+        top_twenty[player.user.username] = model_to_dict(player, fields=[field.name for field in player._meta.fields])
 
     scores = []
+    #get a list of the players score for the given paramter
+    #iterate over the player list rather than the dictionary to maintain the order of players
     for player in players:
-        scores += [player.total_kills]
+        p = top_twenty[player.user.username]
+        score = p[orderBy]
+        scores += [score]
 
+    #create the leaderboard as a list of ordered tuples, ready for the template to render
     leaderboard = zip(players, scores)
-    context_dict = { 'top_ten': leaderboard[:10],
+
+    #break the leaderboard into to lists of ten to be displayed side by side
+    context_dict = {'top_ten': leaderboard[:10],
                     'next_ten':leaderboard[10:],
                     'slug': get_user_slug(request)}
-    return render_block_to_string('zombie_search/render_players.html','whatever',context_dict)
+    return context_dict
+
+#render each leaderboard
+def total_kills(request):
+    return render_block_to_string('zombie_search/render_players.html','render_block',get_leaderboard(request, 'total_kills'))
 
 def most_kills(request):
-
-    players = get_leaderboard('most_kills')
-
-    scores = []
-    for player in players:
-        scores += [player.most_kills]
-
-    leaderboard = zip(players, scores)
-    context_dict = { 'top_ten': leaderboard[:10],
-                    'next_ten':leaderboard[10:],
-                    'slug': get_user_slug(request)}
-    #return render(request, 'zombie_search/Home.html', context_dict)
-    return render_block_to_string('zombie_search/render_players.html','whatever',context_dict)
+    return render_block_to_string('zombie_search/render_players.html','render_block', get_leaderboard(request, 'most_kills'))
 
 def total_days(request):
-
-    players = get_leaderboard('total_days')
-
-    scores = []
-    for player in players:
-        scores += [player.total_days]
-
-    leaderboard = zip(players, scores)
-    context_dict = { 'top_ten': leaderboard[:10],
-                    'next_ten':leaderboard[10:],
-                    'slug': get_user_slug(request)}
-    #return render(request, 'zombie_search/Home.html', context_dict)
-    return render_block_to_string('zombie_search/render_players.html','whatever',context_dict)
-
+    return render_block_to_string('zombie_search/render_players.html','render_block', get_leaderboard(request, 'total_days'))
 
 #game instructions
 def about(request):

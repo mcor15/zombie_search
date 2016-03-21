@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -12,6 +13,7 @@
 	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen" />
 	<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet" />
 	<link href="{% static 'css/base_style.css' %}" rel="stylesheet" />
+
 	<title>Zombie Search-{% block title %}Zombie Search{% endblock %}</title>
 </head>
 
@@ -32,37 +34,32 @@ Plan your moves carefully, as each action takes up time within the day! The game
 </p>
 </div>
 <div id="game">
+	<div id="stats">
+	</div>
 
+	<div id="picture">
 
-<div id="stats">
+		<div id="update_state">
+			------------
+		</div>
+	</div>
 
-</div>
-    <div id="picture">
-
-    </div>
-
-	<div id="update_state">
-
-
+	{% block buttons %}
+	<div class="navbar navbar-fixed-bottom container" id="posthere">
 
 	</div>
-	{% block buttons %}
-	<nav class = "navbar navbar-fixed-bottom" id  = "posthere">
-
-	</nav>
 	{% endblock %}
 
 </div>
-</body>
 
-	<!-- JQuery -->
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
 <script src="{% static 'js/zombie-ajax.js' %}"></script>
+</body>
 
 </html>

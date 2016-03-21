@@ -9,10 +9,10 @@ body {
 **/
 .table {
 	display:table;
-	margin: auto;
-	width:25%;
+	width: auto;
 	display: inline-block;
-	margin-top: 10px;
+	margin-top: 20px;
+	margin-bottom: 0px;
 }
 
 .table td{
@@ -162,31 +162,53 @@ body {
 	make sure the game picture fits the div but also eaves room for buttons
 	...yes, this makes some pictures look stretched :(
 **/
-#game img{
+#picture{
 	width: 100%;
 	height: 90%;
 	border-radius: 25px 25px 0px 0px;
 	}
 
+#picture img{
+	width: 100%;
+	height: 100%;
+	border-radius: 25px 25px 0px 0px;
+}
+
+#update_state{
+	background-color: white;
+	float: bottom;
+	width: 100%;
+	height: 10%;
+}
+
 /**
 	div for game stats shown in top left corner (food, time left etc...)
 **/
-#game_stats{
-  width: 20%;
+#stats{
+  width: 200px;
 	position: absolute;
 	left: 10px;
 	top: 10px;
 	background-color: white;
 	border-radius: 25px;
 	}
-/**
-	style for list of game stats
-**/
-#game_stats li{
-  text-align: right;
+
+#stats ul{
 	list-style: none;
-	margin: 5px;
-	font-size: 85%;
+}
+
+#controls {
+		width: 100%;
+		text-align: left;
+		position: absolute;
+		bottom: 0px;
+	}
+
+#controls li {
+	display: inline-block;
+	float: none;
+	padding-left: 12px;
+	padding-right: 12px;
 	}
 
 /**

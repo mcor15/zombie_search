@@ -1,24 +1,14 @@
 {% extends 'zombie_search/Base.html' %}
 
 {% load static %}
+
 {% block title %}Home{% endblock %}
-  {% block header %}Leaderboard-<d id="type">Total Kills</d>{% endblock %}
-  {% block body %}
-    <button id="left" class="btn btn-primary" type="button">←</button>
-  <d id="first_half"></d>
 
+{% block header %}Leaderboard-<b id="type">Total Kills</b>{% endblock %}
 
+{% block body %}
+  <button id="left" class="btn btn-primary" type="button" style="display: inline">←</button>
+  <div id="first_half" style="display: inline"></div>
+  <button id="right" class="btn btn-primary" type="button" style="display:inline">→</button>
 
-
-
-    <button id="right" class="btn btn-primary" type="button">→</button>
-    <!-- JQuery -->
-    	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    	<script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
-    	<script src="{% static 'js/zombie-jquery.js' %}"></script>
-    		<script src="{% static 'js/leaderboard-ajax.js' %}"></script>
-
-
-
-  {% endblock %}
+{% endblock %}

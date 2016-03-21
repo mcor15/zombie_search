@@ -1,5 +1,4 @@
 	{% block update_state %}
-        you are on a street. There are 5 houses on this street. What would you like to do?
         {% if update_state.party > 0 %}
             You've found {{ update_state.party }} new party members !
         {% endif %}
@@ -12,4 +11,4 @@
         {% if update_state.kills > 0 %}
             You've killed {{ update_state.kills }} zombies !
         {% endif %}
-    {% endblock %}
+  {% endblock %}
