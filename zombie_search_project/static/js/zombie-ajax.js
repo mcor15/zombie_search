@@ -16,7 +16,6 @@ function gethtml(){
     $.get('/zombie_search/game/', {"action":parameters[0],
                                             "houseNumber":parameters[1],
                                             "roomNumber":parameters[2]}, function(data){
-                        alert(data.length)
                         if(data.length==5) {
                             document.getElementById("posthere").innerHTML = data[0];
                             document.getElementById("update_state").innerHTML = data[1];

@@ -3,9 +3,9 @@
     You are facing zombies, you can either fight them or run away!
         {%endif%}
         {% if game_state == "STREET" %}
-            You are on a street. There are {{ num_of_houses }} houses on the street. You are in front of house number {{ currentHouse }}.
+            You are on a street. There are {{ num_of_houses }} houses on the street. You are in front of house number {{ houseNumber }}.
         {%endif%}
         {% if game_state == "HOUSE" %}
-            You are on a street. There are {{ num_of_rooms }} houses on the street. You are in front of house number {{ currentRoom }}.
+            You are in a house. There are {{ num_of_rooms }} rooms in the house. You are in front of room number {{ roomNumber }}.
         {%endif%}
 	{% endblock %}

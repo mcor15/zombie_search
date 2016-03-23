@@ -16,7 +16,7 @@ class Player(models.Model):
     update_state = PickledObjectField()
     street = PickledObjectField()
     game_state = PickledObjectField()
-    _time_left=PickledObjectField()
+    _time_left=PickledObjectField(default=100)
     games_played = models.IntegerField(default=0)
     total_days = models.IntegerField(default=0)
     avg_days = models.FloatField(default=0.0)

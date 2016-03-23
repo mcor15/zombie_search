@@ -97,13 +97,7 @@ def populate():
         print "- {0}".format(str(a))
     print ""
 
-    '''u= User.objects.all()
-    u = u.get(username="Marcus Gormley")
-    p = Player.objects.all()
-    p = p.get(user=u)
-    b = Badge.objects.all()
-    b = b.get(type = "Killer")
-    add_achievement(p,b, date(2026, 3, 11))'''
+
 
 def check_achievements(player):
 

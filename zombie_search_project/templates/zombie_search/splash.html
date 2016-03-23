@@ -33,7 +33,9 @@ Plan your moves carefully, as each action takes up time within the day! The game
 </p>
 </div>
 
-    {% if existing_game%}
+    {% if first_game%}
+            <img src="{% static 'img/firstGame.jpg' %}" />
+        {% elif existing_game %}
         	<img src="{% static 'img/Splash.jpg' %}" />
     {% else %}
         	<img src="{% static 'img/gameOver.jpg' %}" />
@@ -51,7 +53,7 @@ Plan your moves carefully, as each action takes up time within the day! The game
 	</ul>
 
 	</nav>
-{% if existing_game %}
+{% if existing_game or first_game %}
 
 {% else %}
 <div>

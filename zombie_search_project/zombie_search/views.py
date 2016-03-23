@@ -28,10 +28,6 @@ def init_board(request):
     types=['total_kills','total_days']
 
     html = total_kills(request)
-    #packet = {'html':html}
-    #html= html[38:]
-    #print "==========>"+str(html)
-    #return HttpResponse(packet)
     return HttpResponse(html)
 def update_board(request):
     types=['Total Kills','Total Days',"Most Kills"]
@@ -44,9 +40,6 @@ def update_board(request):
     elif board == 2:
         html = most_kills(request)
     html = str(html)
-    #print html
-    #html= html[38:]
-    #print html
     stuff = {"stat":types[board],"html":html, 'slug': get_user_slug(request)}
     return HttpResponse(json.dumps(stuff))
 #***************************************
@@ -258,26 +251,37 @@ def register(request):
 def splash(request):
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
-    g.load(p.player_state,p.update_state,p.game_state,p.street,p._time_left)
-    return render(request, 'zombie_search/splash.html',{"Existing_game": not g.is_game_over(),
+    g.start_new_day()
+    #checks if the player has played a game before
+    first_game = p.games_played == 0 and g._time_left==p._time_left
+    if(not first_game):
+        g.player_state=p.player_state
+        g._time_left=p._time_left
+        g.game_state=p.game_state
+    #checks if there is a current instance of a game
+    existing_game =  not first_game and not g.is_game_over()
+    return render(request, 'zombie_search/splash.html',{"existing_game": existing_game,
                                                         "Kills":g.player_state.kills,
-                                                        'Day':g.player_state.days,})
+                                                        'Day':g.player_state.days,
+                                                        'first_game':first_game,})
 
 @login_required
 def game(request):
+    #skips processing of actions and just renders the initial game screen view
     if not request.is_ajax():
+        #if called with an action it sets up a new game
         if "action" in request.GET:
             p=Player.objects.get_or_create(user=request.user)[0]
             g=Game()
             g.start_new_day()
             p.update_game(g.player_state,g.street,g.update_state,g.game_state,g._time_left)
         return render(request, 'zombie_search/In_Game.html' )
-
+    #If game is called without an action it is treated as loading a new game
     if "action" in request.GET:
         action=request.GET["action"]
     else:
         action="PASS"
-
+    #instantiates the game objects and loads them from the models
     p=Player.objects.get_or_create(user=request.user)[0]
     g = Game()
     if action=="NEW":
@@ -293,25 +297,28 @@ def game(request):
     else:
         roomNumber=p.street.get_current_house().current_room
     if g.is_game_over():
+        #if the game is over redirects to the splash screen and saves progress
         p.game_over_update(days=g.player_state.days,kills=g.player_state.kills,party=g.player_state.party)
         p.update_game(g.player_state,g.street,g.update_state,g.game_state,g._time_left)
         return redirect('/zombie_search/play')
+    #checks what picture to dislay for the current room
     visited_room=g.street.get_current_house().room_list[int(roomNumber)].visited
+    #processes inputs and saves changes to the models
     g.process_turn(action,int(houseNumber),int(roomNumber))
-
     if g.is_day_over():
         g.end_day()
         g.start_new_day()
     p.update_game(g.player_state,g.street,g.update_state,g.game_state,g._time_left)
 
-    context = {'num_of_houses': range(0,p.street.num_of_houses),
-               'room_list':g.street.get_current_house().room_list,
-               'roomNumber':roomNumber,
-               'currentHouse':houseNumber,
-               'game_state':g.game_state}
 
+    #sets up all the parameters used for the django templates
     return_str=[]
-    return_str.append(render_block_to_string('zombie_search/toRender.html', 'results', context))
+    return_str.append(render_block_to_string('zombie_search/toRender.html', 'results', {'num_of_houses': range(0,p.street.num_of_houses),
+                                                                                        'room_list':g.street.get_current_house().room_list,
+                                                                                        'roomNumber':roomNumber,
+                                                                                        'currentHouse':houseNumber,
+                                                                                        'game_state':g.game_state,
+                                                                                        }))
     return_str.append(render_block_to_string('zombie_search/update_state.html', 'update_state', {'update_state': g.update_state}))
     return_str.append(render_block_to_string('zombie_search/stats.html', 'stats', {       'Ammo':p.player_state.ammo,
                                                                                                  'Food':p.player_state.food,
@@ -320,6 +327,7 @@ def game(request):
                                                                                                  'Time':g.time_left,
                                                                                                  'Killed':g.player_state.kills,
                                                                                                  }))
+    #Makes a path to a random image corresponding to the game state
     if g.game_state == "STREET":
         path = "static/img/street"
         num_files = sum(os.path.isfile(os.path.join(path, f)) for f in os.listdir(path))
@@ -366,3 +374,5 @@ def reset(request):
 
 def handler404(request):
     return render(request, 'zombie_search/404.html')
+
+
