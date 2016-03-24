@@ -11,28 +11,23 @@ from django.contrib.auth.views import password_reset, password_reset_confirm
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from zombie_search.forms import UpdateUser, UserForm, PlayerForm
-#from zombie_search.forms import UserForm, PlayerForm
 import copy
 import json
 from game import Game
 from django.core.mail import send_mail
 from django.forms.models import model_to_dict
-#credit
 from script942 import render_block_to_string
 import os.path
 
-#**********************************
-def init_leaderboard(request):
+#********************************** Leaderboard
+def init_leaderboard(request): #send the inital Leaderboard to the user
     return render(request,'zombie_search/base_home.html', get_leaderboard(request, 'total_kills' ))
-def init_board(request):
-    types=['total_kills','total_days']
-
+def init_board(request):#send the initial list of players by total kills
     html = total_kills(request)
     return HttpResponse(html)
-def update_board(request):
-    types=['Total Kills','Total Days',"Most Kills"]
-    board= int(request.GET['current'])
-    print board
+def update_board(request):#if the user clicks the right or left button, return updated list of players
+    types=['Total Kills','Total Days','Most Kills']
+    board= int(request.GET['current']) #current is the cookie from the user's broswer that tells us which status they were viewing
     if board == 0:
         html = total_kills(request)
     elif board == 1:
@@ -374,5 +369,3 @@ def reset(request):
 
 def handler404(request):
     return render(request, 'zombie_search/404.html')
-
-
