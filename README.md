@@ -9,14 +9,14 @@ Team:
   Frances Ramirez
 
 How to install:
-   navigate to "zombie_search\zombie_search_project"
-   run- mkvirtualenv <your name for the virtual environment>
-   run- workon <your name for the virtual environment>
-   run- pip install -r requirements.txt
-   run- python manage.py makemigrations
-   run- python manage.py migrate
-   run- python populate_zombie_search.py
-   run- python manage.py createsuperuser (if you wish to access the database)
+   * navigate to "zombie_search\zombie_search_project"
+   * run- mkvirtualenv "your name for the virtual environment"
+   * run- workon "your name for the virtual environment"
+   * run- pip install -r requirements.txt
+   * run- python manage.py makemigrations
+   * run- python manage.py migrate
+   * run- python populate_zombie_search.py
+   * run- python manage.py createsuperuser (if you wish to access the database)
 
 
 Credit:
@@ -25,5 +25,5 @@ Credit:
   Web: https://www.djangosnippets.org/snippets/942/
 
   Django Random Image
-  Author: Tosh Lyons
-  Web: https://github.com/toshism/django-random-image
+   Author: Tosh Lyons
+   Web: https://github.com/toshism/django-random-image
