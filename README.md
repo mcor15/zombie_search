@@ -20,6 +20,7 @@ How to install:
 
 
 Credit:
+
   Scirpt942
   Author: zbyte64
   Web: https://www.djangosnippets.org/snippets/942/
