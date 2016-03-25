@@ -9,7 +9,7 @@ Team:
   Frances Ramirez
 
 How to install:
-   * navigate to "zombie_search\zombie_search_project"
+   * navigate to "zombie_search\zombie_search_project\"
    * run- mkvirtualenv "your name for the virtual environment"
    * run- workon "your name for the virtual environment"
    * run- pip install -r requirements.txt
